@@ -6,6 +6,13 @@
 - base 基础组件
 - components 页面组件
 - 使用阿里的iconfont生成图标
+
+### 运行js文件
+> 定位到该文件的目录，shift+右键打开命令行，输入：
+```
+node 文件.js
+```
+
 ## Build Setup
 
 ``` bash
