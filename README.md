@@ -1,7 +1,11 @@
 # vuebook
 
 > A Vue.js project
-
+- mock 模拟数据
+- api 代表所有接口
+- base 基础组件
+- components 页面组件
+- 使用阿里的iconfont生成图标
 ## Build Setup
 
 ``` bash
