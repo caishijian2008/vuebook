@@ -19,6 +19,13 @@
   </div>
 </template>
 
+<!--
+flex-direction: row / column;
+justify-content: center 垂直居中
+align-items: center 水平居中
+flex: 1 每份占1
+router-link-exact-active router-link-active
+-->
 <style lang="scss" scoped>
 .footer {
   position: fixed;
@@ -27,5 +34,17 @@
   width: 100%;
   height: 50px;
   display: flex;
+  border-top: 1px solid #ccc;
+  a {
+    display: flex;
+    color: forestgreen;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+  }
+  a.router-link-active {
+    color: red;
+  }
 }
 </style>
