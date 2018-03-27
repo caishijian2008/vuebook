@@ -1,7 +1,7 @@
 <template>
   <swiper :options="swiperOption">
     <swiper-slide v-for="(slide, key) in swiperSlides" :key="key">
-      I'm Slide {{ slide }}
+      <img :src="slide" alt="">
     </swiper-slide>
     <div class="swiper-pagination" slot="pagination"></div>
   </swiper>
@@ -10,6 +10,7 @@
 <script>
 export default {
   name: 'carrousel',
+  props: ['swiperSlides'],
   data () {
     return {
       swiperOption: {
@@ -17,14 +18,14 @@ export default {
           el: '.swiper-pagination'
         },
         autoplay: 3500,
-        setWrapperSize: true
-      },
-      swiperSlides: [1, 2, 3, 4, 5]
+        setWrapperSize: true,
+        observeParents: true
+      }
     }
   }
 }
 </script>
 
 <style lang="scss" scoped>
-
+img {width: 100%;}
 </style>
