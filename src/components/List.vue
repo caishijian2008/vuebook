@@ -6,7 +6,21 @@
 
 <script>
 import MHeader from '@/base/MHeader'
+import {getBooks} from '../api'
 export default {
+  created () {
+    this.getBook()
+  },
+  methods: {
+    async getBook () {
+      this.books = await getBooks()
+    }
+  },
+  data () {
+    return {
+      books: []
+    }
+  },
   components: {
     MHeader
   }

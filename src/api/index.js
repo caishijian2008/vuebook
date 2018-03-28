@@ -17,3 +17,8 @@ export let getSliders = () => {
 export let getHotBook = () => {
   return axios.get('/hot')
 }
+
+// 获取全部图书
+export let getBooks = () => {
+  return axios.get('/book')
+}
