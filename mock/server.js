@@ -14,8 +14,15 @@ function read (cb) {
     }
   })
 }
-// read(function (books) { // books代表所有图书， 此处是测试
+// read(function (books) { // books代表所有图书，此处是测试
 //   console.log(books)
+// })
+
+function write (data, cb) { // 写入内容
+  fs.writeFile('/book.json', JSON.stringify(data), cb)
+}
+// write({}, function () { // 此处是测试
+//   console.log('写入成功')
 // })
 
 http.createServer((req, res) => {
@@ -55,6 +62,13 @@ http.createServer((req, res) => {
       case 'PUT':
         break
       case 'DELETE':
+        read(function (books) {
+          books = books.filter(item => item.bookId !== id)
+          console.log(books.length)
+          write(books, function () {
+            res.end(JSON.stringify({})) // 删除返回空对象
+          })
+        })
         break
     }
   }
