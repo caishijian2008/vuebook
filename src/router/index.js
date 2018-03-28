@@ -10,10 +10,12 @@ Vue.use(Router)
 
 export default new Router({
   routes: [
+    {path: '/', redirect: '/home'},
     {path: '/add', component: Add},
     {path: '/collect', component: Collect},
     {path: '/detail', component: Detail},
     {path: '/home', component: Home},
-    {path: '/list', component: List}
+    {path: '/list', component: List},
+    {path: '*', redirect: '/home'}
   ]
 })

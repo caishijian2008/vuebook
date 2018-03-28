@@ -14,9 +14,9 @@ function read (cb) {
     }
   })
 }
-read(function (books) { // books代表所有图书
-  console.log(books)
-})
+// read(function (books) { // books代表所有图书， 此处是测试
+//   console.log(books)
+// })
 
 http.createServer((req, res) => {
   res.setHeader('Access-Control-Allow-Origin', '*')
@@ -30,5 +30,12 @@ http.createServer((req, res) => {
     res.setHeader('Content-Type', 'application/json;charset=utf8')
     return res.end(JSON.stringify(sliders))
   }
-  if (pathname === '/hot') {}
+  if (pathname === '/hot') {
+    read(function (books) {
+      res.setHeader('Content-Type', 'application/json;charset=utf8')
+      let hot = books.reverse().slice(0, 6)
+      res.end(JSON.stringify(hot))
+    })
+    return ''
+  }
 }).listen(3000)
