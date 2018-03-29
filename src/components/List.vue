@@ -3,15 +3,15 @@
     <MHeader>图书列表</MHeader>
     <div class="content">
       <ul>
-        <li v-for="(book, index) in books" :key="index">
+        <router-link v-for="(book, index) in books" :key="index" :to="{name: 'detail', params: {bid: book.bookId}}" tag="li">
           <img :src="book.bookCover">
           <div>
             <h4>{{book.bookName}}</h4>
             <p>{{book.bookInfo}}</p>
             <b>{{book.bookPrice}}</b>
-            <button @click="remove(book.bookId)">删除</button>
+            <button @click.stop="remove(book.bookId)">删除</button>
           </div>
-        </li>
+        </router-link>
       </ul>
     </div>
   </div>
@@ -26,7 +26,7 @@ export default {
   },
   methods: {
     async remove (id) { // 删某一项
-      await removeBook(id)
+      // await removeBook(id)
       // 后台删了，前台也要删除
       this.books = this.books.filter(item => item.bookId !== id)
     },
