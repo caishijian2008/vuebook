@@ -1,15 +1,65 @@
 <template>
   <div class="detail">
-    {{bid}}
+    <MHeader :back="true">图书详情</MHeader>
+    <div class="content">
+      <ul>
+        <li>
+          <label for="bookName">书名</label>
+          <input type="text" v-model="book.bookName" id="bookName">
+        </li>
+        <li>
+          <label for="bookInfo">信息</label>
+          <input type="text" v-model="book.bookInfo" id="bookInfo">
+        </li>
+        <li>
+          <label for="bookPrice">价格</label>
+          <input type="number" v-model.number="book.bookPrice" id="bookPrice">
+        </li>
+        <li>
+          <button @click="update">确认修改</button>
+        </li>
+      </ul>
+    </div>
   </div>
 </template>
 
 <script>
+import MHeader from '@/base/MHeader'
+import {findOneBook, updateBook} from '../api'
 export default {
+  created () { // 页面一加载，需要根据id发送请求
+    this.getBook()
+  },
+  watch: {
+    $route () { // 只要路径发生变化，就重新获取数据
+      this.getBook()
+    }
+  },
+  methods: {
+    async update () { // 修改图书信息
+      await updateBook(this.bid, this.book)
+      this.$router.push('/list') // 修改完成后跳转页面
+    },
+    async getBook () { // 通过id找到某一项后赋给book
+      this.book = await findOneBook(this.bid)
+      // 如果是空对象，需要跳转回列表页【难点】
+      // 思路：JSON.stringify(this.book) === '{}' 或者 JSON.stringify(this.book).length === 0
+      console.log(Object.keys(this.book))
+      Object.keys(this.book).length > 0 ? void 0 : this.$router.push('/list')
+    }
+  },
   computed: {
     bid () {
       // 将路径参数的id映射到bid
       return this.$route.params.bid
+    }
+  },
+  components: {
+    MHeader
+  },
+  data () {
+    return {
+      book: {}
     }
   }
 }
@@ -24,5 +74,28 @@ export default {
   right: 0;
   background: #fff;
   z-index: 999;
+}
+ul {
+  margin: 50px 20px 0 20px;
+  li {
+    label {
+      display: block;
+    }
+    input {
+      margin: 10px 0;
+      width: 100%;
+      height: 25px;
+    }
+    button {
+      display: block;
+      width: 80px;
+      height: 25px;
+      background: rgb(255, 82, 1);
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      outline: none;
+    }
+  }
 }
 </style>

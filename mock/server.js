@@ -48,8 +48,13 @@ http.createServer((req, res) => {
     let id = parseInt(query.id) // query.id取出的是字符串
     switch (req.method) { // ?id=1
       case 'GET':
-        if (id) { // 查询一本书
-          //
+        if (!isNaN(id)) { // 查询一本
+          read(function (books) {
+            let book = books.find(item => item.bookId === id)
+            if (!book) book = {} // 如果没找到则是undefined，就赋予空对象
+            res.setHeader('Content-Type', 'application/json;charset=utf8')
+            res.end(JSON.stringify(book))
+          })
         } else { // 获取所有图书
           read(function (books) {
             res.setHeader('Content-Type', 'application/json;charset=utf8')
@@ -60,6 +65,26 @@ http.createServer((req, res) => {
       case 'POST':
         break
       case 'PUT':
+        if (id) {
+          let str = ''
+          req.on('data', chunk => {
+            str += chunk
+          })
+          req.on('end', () => {
+            let book = JSON.parse(str) // book要改成的样子
+            read(function (books) {
+              books = books.map(item => {
+                if (item.bookId === id) { // 找到id相同的那一本书
+                  return book // 用新的书替换旧的
+                }
+                return item // 其它书正常返回
+              })
+              write(books, function () { // 把内存中的新书信息写入到json中
+                res.end(JSON.stringify(book))
+              })
+            })
+          })
+        }
         break
       case 'DELETE':
         read(function (books) {
