@@ -47,3 +47,8 @@ export let updateBook = (id, data) => {
 export let addBook = (data) => {
   return axios.post('/book', data)
 }
+
+// loading
+export let getAll = () => {
+  return axios.all([getSliders(), getHotBook()])
+}

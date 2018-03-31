@@ -41,7 +41,10 @@ http.createServer((req, res) => {
     read(function (books) {
       res.setHeader('Content-Type', 'application/json;charset=utf8')
       let hot = books.reverse().slice(0, 6)
-      res.end(JSON.stringify(hot))
+      // res.end(JSON.stringify(hot))
+      setTimeout(() => { // 用于模拟Home.vue中的正在加载效果
+        res.end(JSON.stringify(hot))
+      }, 2000)
     })
     return
   }
