@@ -42,3 +42,8 @@ export let findOneBook = (id) => {
 export let updateBook = (id, data) => {
   return axios.put(`/book?id=${id}`, data)
 }
+
+// 添加图书
+export let addBook = (data) => {
+  return axios.post('/book', data)
+}

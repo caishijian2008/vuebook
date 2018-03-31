@@ -19,6 +19,7 @@ function read (cb) {
 // })
 
 function write (data, cb) { // 写入内容
+  console.log(JSON.stringify(data))
   fs.writeFile('/book.json', JSON.stringify(data), cb)
 }
 // write({}, function () { // 此处是测试
@@ -63,6 +64,21 @@ http.createServer((req, res) => {
         }
         break
       case 'POST':
+        let str = ''
+        req.on('data', chunk => {
+          str += chunk
+        })
+        req.on('end', () => {
+          let book = JSON.parse(str)
+          read(function (books) {
+            // 生成bookId
+            book.bookId = books.length ? books[books.length - 1].bookId + 1 : 1
+            books.push(book) // 将数据放到books中，此时的books在内存中
+            write(books, function () {
+              res.end(JSON.stringify(book))
+            })
+          })
+        })
         break
       case 'PUT':
         if (id) {

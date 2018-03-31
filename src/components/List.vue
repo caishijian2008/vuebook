@@ -26,7 +26,7 @@ export default {
   },
   methods: {
     async remove (id) { // 删某一项
-      // await removeBook(id)
+      await removeBook(id)
       // 后台删了，前台也要删除
       this.books = this.books.filter(item => item.bookId !== id)
     },
@@ -54,8 +54,8 @@ export default {
       padding: 10px 0;
       border-bottom: 1px solid #f1f1f1;
       img {
-        width: 130px;
-        height: 150px;
+        width: 8em;
+        height: 9em;
       }
     }
   }
