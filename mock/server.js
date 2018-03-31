@@ -20,7 +20,7 @@ function read (cb) {
 
 function write (data, cb) { // 写入内容
   console.log(JSON.stringify(data))
-  fs.writeFile('/book.json', JSON.stringify(data), cb)
+  fs.writeFile('./book.json', JSON.stringify(data), cb)
 }
 // write({}, function () { // 此处是测试
 //   console.log('写入成功')
