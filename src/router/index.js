@@ -12,6 +12,7 @@ export default new Router({
   routes: [
     {path: '/', redirect: '/home'},
     // 路由元信息
+    // 此处给页面使用了路由缓存，哪个页面要使用缓存，就添加meta的keepAlive，并在App.vue引用
     // 引用时使用 this.$route.meta.keepAlive
     {
       path: '/home',
