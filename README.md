@@ -20,6 +20,11 @@ node 文件.js
 ## 路由元信息
 - 
 
+## 下拉加载 /page
+- 默认每次给5条记录，前端告诉后台现在要从第几条开始
+- /page?offset=5
+- 后台返回还要告诉前端是否有更多的数据 hasMore:false
+
 ## Build Setup
 
 ``` bash

@@ -25,7 +25,7 @@ function write (data, cb) { // 写入内容
 // write({}, function () { // 此处是测试
 //   console.log('写入成功')
 // })
-
+let pageSize = 5 // 每页显示5条数据
 http.createServer((req, res) => {
   res.setHeader('Access-Control-Allow-Origin', '*')
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type,Content-Length, Authorization, Accept,X-Requested-With')
@@ -33,6 +33,23 @@ http.createServer((req, res) => {
   res.setHeader('X-Powered-By', ' 3.2.1')
   if (req.method === 'OPTIONS') return res.end() /* return res.send() 让options请求快速返回 */
   let {pathname, query} = url.parse(req.url, true) // true把query转化成对象
+
+  if (pathname === '/page') {
+    let offset = parseInt(query.offset) || 0
+    // console.log(offset)
+    read(function (books) {
+      // 每次偏移量，在偏移的基础上增加5条数据记录
+      let result = books.reverse().slice(offset, offset + pageSize) //数据倒序
+      let hasMore = true // 默认有更多数据
+      if (books.length <= offset + pageSize) { // 已经显示的数目大于了总条数
+        hasMore = false
+      }
+      res.setHeader('Content-Type', 'application/json;charset=utf8')
+      res.end(JSON.stringify({hasMore, books: result}))
+    })
+    return
+  }
+
   if (pathname === '/sliders') {
     res.setHeader('Content-Type', 'application/json;charset=utf8')
     return res.end(JSON.stringify(sliders))
