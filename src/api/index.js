@@ -52,3 +52,8 @@ export let addBook = (data) => {
 export let getAll = () => {
   return axios.all([getSliders(), getHotBook()])
 }
+
+// 分页，根据偏移量返回对应的数据
+export let pagination = (offset) => {
+  return axios.get(`/page?offset=${offset}`)
+}

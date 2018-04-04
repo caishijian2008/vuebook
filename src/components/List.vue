@@ -13,30 +13,43 @@
           </div>
         </router-link>
       </ul>
+      <div class="more" @click="more">加载更多</div>
     </div>
   </div>
 </template>
 
 <script>
 import MHeader from '@/base/MHeader'
-import {getBooks, removeBook} from '../api'
+// import {getBooks, removeBook} from '../api'
+import {pagination, removeBook} from '../api' // 使用分页
 export default {
   created () {
-    this.getBook()
+    this.getData()
   },
   methods: {
+    more () {
+      this.getData()
+    },
     async remove (id) { // 删某一项
       await removeBook(id)
       // 后台删了，前台也要删除
       this.books = this.books.filter(item => item.bookId !== id)
     },
-    async getBook () {
-      this.books = await getBooks()
+    async getData () {
+      // this.books = await getBooks()
+      if (this.hasMore) { // 有更多的时候获取数据
+        let {hasMore, books} = await pagination(this.offset)
+        this.books = [...this.books, ...books] // 原来的书 + 分页的书
+        this.hasMore = hasMore
+        this.offset = this.books.length // 维护偏移量，就是总共书的数量
+      }
     }
   },
   data () {
     return {
-      books: []
+      books: [],
+      offset: 0, // 偏移量
+      hasMore: true // 是否有更多
     }
   },
   components: {
@@ -79,6 +92,14 @@ export default {
     border: none;
     border-radius: 10px;
     outline: none;
+  }
+  .more {
+    margin: 10px;
+    background: #2afedd;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    font-size: 18px;
   }
 }
 </style>

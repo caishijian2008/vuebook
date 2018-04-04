@@ -39,7 +39,7 @@ http.createServer((req, res) => {
     // console.log(offset)
     read(function (books) {
       // 每次偏移量，在偏移的基础上增加5条数据记录
-      let result = books.reverse().slice(offset, offset + pageSize) //数据倒序
+      let result = books.reverse().slice(offset, offset + pageSize) // 数据倒序
       let hasMore = true // 默认有更多数据
       if (books.length <= offset + pageSize) { // 已经显示的数目大于了总条数
         hasMore = false
