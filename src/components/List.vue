@@ -4,7 +4,8 @@
     <div class="content" ref="scroll" @scroll="loadMore">
       <ul>
         <router-link v-for="(book, index) in books" :key="index" :to="{name: 'detail', params: {bid: book.bookId}}" tag="li">
-          <img :src="book.bookCover">
+          <!-- <img :src="book.bookCover"> -->
+          <img v-lazy="book.bookCover"> <!-- 图片懒加载，见main.js -->
           <div>
             <h4>{{book.bookName}}</h4>
             <p>{{book.bookInfo}}</p>
@@ -28,7 +29,7 @@ export default {
   },
   methods: {
     loadMore () { // 滚动后自动加载更多
-      clearTimeout(this.timer) // 防抖
+      clearTimeout(this.timer) // 节流
       // 触发scroll事件，可能会触发n次，先进来开一个定时器，下次触发时将上一次定时器清除掉
       this.timer = setTimeout(() => {
         //   卷去的高度   当前可见区域      总高度
@@ -36,7 +37,7 @@ export default {
         if (scrollTop + clientHeight + 20 > scrollHeight) {
           this.getData() // 获取更多
         }
-      }, 20)
+      }, 500)
     },
     more () { // 加载更多
       this.getData()
