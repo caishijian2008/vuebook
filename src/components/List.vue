@@ -1,7 +1,7 @@
 <template>
   <div>wlug4g2j7x
     <MHeader>图书列表</MHeader>
-    <div class="content">
+    <div class="content" ref="scroll" @scroll="loadMore">
       <ul>
         <router-link v-for="(book, index) in books" :key="index" :to="{name: 'detail', params: {bid: book.bookId}}" tag="li">
           <img :src="book.bookCover">
@@ -27,7 +27,18 @@ export default {
     this.getData()
   },
   methods: {
-    more () {
+    loadMore () { // 滚动后自动加载更多
+      clearTimeout(this.timer) // 防抖
+      // 触发scroll事件，可能会触发n次，先进来开一个定时器，下次触发时将上一次定时器清除掉
+      this.timer = setTimeout(() => {
+        //   卷去的高度   当前可见区域      总高度
+        let {scrollTop, clientHeight, scrollHeight} = this.$refs.scroll
+        if (scrollTop + clientHeight + 20 > scrollHeight) {
+          this.getData() // 获取更多
+        }
+      }, 20)
+    },
+    more () { // 加载更多
       this.getData()
     },
     async remove (id) { // 删某一项
@@ -37,11 +48,13 @@ export default {
     },
     async getData () {
       // this.books = await getBooks()
-      if (this.hasMore) { // 有更多的时候获取数据
+      if (this.hasMore && !this.isLoading) { // 有更多的时候获取数据
+        this.isLoading = true // 正在加载
         let {hasMore, books} = await pagination(this.offset)
-        this.books = [...this.books, ...books] // 原来的书 + 分页的书
+        this.books = [...this.books, ...books] // 原来的书 + 分页的书【难点】
         this.hasMore = hasMore
-        this.offset = this.books.length // 维护偏移量，就是总共书的数量
+        this.isLoading = false // 加载完毕
+        this.offset = this.books.length // 维护偏移量，就是总共书的数量【难点】
       }
     }
   },
@@ -49,7 +62,8 @@ export default {
     return {
       books: [],
       offset: 0, // 偏移量
-      hasMore: true // 是否有更多
+      hasMore: true, // 是否有更多
+      isLoading: false // 默认不是正在加载，解决一刷新页面就狂点“正在加载”按钮时数据就自动连续出来的bug
     }
   },
   components: {

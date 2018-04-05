@@ -46,6 +46,9 @@ http.createServer((req, res) => {
       }
       res.setHeader('Content-Type', 'application/json;charset=utf8')
       res.end(JSON.stringify({hasMore, books: result}))
+      // setTimeout(function () { // 模拟数据发送慢，有延迟
+      //   res.end(JSON.stringify({hasMore, books: result}))
+      // }, 2000)
     })
     return
   }
