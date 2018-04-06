@@ -1,0 +1,2 @@
+webpackJsonp([4],{QV70:function(e,t,n){"use strict";Object.defineProperty(t,"__esModule",{value:!0});var r={render:function(){var e=this.$createElement;return(this._self._c||e)("div",[this._v("\n  collect\n")])},staticRenderFns:[]};var c=n("Z0/y")({},r,!1,function(e){n("dYSA")},"data-v-bfb12580",null);t.default=c.exports},dYSA:function(e,t){}});
+//# sourceMappingURL=4.a5b82eefaa0b43521cd1.js.map

@@ -27,11 +27,11 @@ function write (data, cb) { // 写入内容
 // })
 let pageSize = 5 // 每页显示5条数据
 http.createServer((req, res) => {
-  res.setHeader('Access-Control-Allow-Origin', '*')
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type,Content-Length, Authorization, Accept,X-Requested-With')
-  res.setHeader('Access-Control-Allow-Methods', 'PUT,POST,GET,DELETE,OPTIONS')
-  res.setHeader('X-Powered-By', ' 3.2.1')
-  if (req.method === 'OPTIONS') return res.end() /* return res.send() 让options请求快速返回 */
+  // res.setHeader('Access-Control-Allow-Origin', '*')
+  // res.setHeader('Access-Control-Allow-Headers', 'Content-Type,Content-Length, Authorization, Accept,X-Requested-With')
+  // res.setHeader('Access-Control-Allow-Methods', 'PUT,POST,GET,DELETE,OPTIONS')
+  // res.setHeader('X-Powered-By', ' 3.2.1')
+  // if (req.method === 'OPTIONS') return res.end() /* return res.send() 让options请求快速返回 */
   let {pathname, query} = url.parse(req.url, true) // true把query转化成对象
 
   if (pathname === '/page') {
@@ -136,4 +136,22 @@ http.createServer((req, res) => {
         break
     }
   }
+
+  // 读取一个路由【有错，不再使用！！原意是想把项目build后放在这里，但实际运行有错，可交由express-server.js运行】
+  // fs.stat('.' + pathname, function (err, stats) {
+  //   if (err) {
+  //     // fs.createReadStream('index.html').pipe(res)
+  //     res.statusCode = 404
+  //     res.end('NOT FOUND')
+  //   } else { // 如果是目录会报错，所以需要判断
+  //     if (stats.isDirectory) {
+  //       // res.setHeader('Content-Type', 'application/json;charset=utf8')
+  //       let p = require('path').join('.' + pathname, './index.html')
+  //       fs.createReadStream(p).pipe(res)
+  //       console.log(res)
+  //     } else {
+  //       fs.createReadStream('.' + pathname).pipe(res)
+  //     }
+  //   }
+  // })
 }).listen(3000)
