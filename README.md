@@ -25,6 +25,8 @@ node 文件.js
 - /page?offset=5
 - 后台返回还要告诉前端是否有更多的数据 hasMore:false
 
+## 路由懒加载
+
 ## Build Setup
 
 ``` bash
