@@ -19,6 +19,14 @@ Vue.use(VueLazyload, {
   attempt: 1
 })
 
+// 【导航守卫】在进入路由之前，每一次都会执行此方法。拦截功能
+router.beforeEach(function (to, from, next) {
+  // console.log(to)
+  // 在浏览器的标签页中显示title
+  document.title = to.meta.title
+  next()
+})
+
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */

@@ -18,7 +18,7 @@ node 文件.js
 - 在哪个组件中应用这个api，如果是一个基础组件需要用这些数据，在使用这个组件的父级中调用这个方法，将数据传递给基础组件
 
 ## 路由元信息
-- 
+- meta属性
 
 ## 下拉加载 /page
 - 默认每次给5条记录，前端告诉后台现在要从第几条开始
@@ -26,6 +26,25 @@ node 文件.js
 - 后台返回还要告诉前端是否有更多的数据 hasMore:false
 
 ## 路由懒加载
+``` js
+{
+  path: '/home',
+  component: () => import('@/components/Home'), // 使用了路由懒加载
+  meta: {
+    keepAlive: true,
+    title: '首页'
+  }
+}
+```
+
+## 导航守卫
+``` JavaScript
+router.beforeEach(function (to, from, next) {
+  // 在浏览器的标签页中显示title
+  document.title = to.meta.title
+  next()
+})
+```
 
 ## Build Setup
 

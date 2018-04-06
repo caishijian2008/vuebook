@@ -23,26 +23,39 @@ export default new Router({
       path: '/home',
       component: () => import('@/components/Home'), // 使用了路由懒加载
       meta: {
-        keepAlive: true
+        keepAlive: true,
+        title: '首页'
       }
     },
     {
       path: '/list',
-      component: () => import('@/components/List')
+      component: () => import('@/components/List'),
+      meta: {
+        title: '列表'
+      }
     },
     {
       path: '/add',
-      component: () => import('@/components/Add')
+      component: () => import('@/components/Add'),
+      meta: {
+        title: '添加'
+      }
     },
     {
       path: '/collect',
-      component: () => import('@/components/Collect')
+      component: () => import('@/components/Collect'),
+      meta: {
+        title: '收藏'
+      }
     },
     // /detail/7 {bid:1} 路径参数，必须有但是可以随机
     {
       path: '/detail/:bid',
       component: () => import('@/components/Detail'),
-      name: 'detail'
+      name: 'detail',
+      meta: {
+        title: '图书详情'
+      }
     },
     {
       path: '*',
