@@ -45,7 +45,7 @@ export default new Router({
       path: '/collect',
       component: () => import('@/components/Collect'),
       meta: {
-        title: '收藏'
+        title: '购物车'
       }
     },
     // /detail/7 {bid:1} 路径参数，必须有但是可以随机

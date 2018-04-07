@@ -10,7 +10,10 @@
             <h4>{{book.bookName}}</h4>
             <p>{{book.bookInfo}}</p>
             <b>{{book.bookPrice}}</b>
-            <button @click.stop="remove(book.bookId)">删除</button>
+            <div class="btn-list">
+              <button @click.stop="remove(book.bookId)">删除</button>
+              <button @click.stop="">+购物车</button>
+            </div>
           </div>
         </router-link>
       </ul>
@@ -105,7 +108,7 @@ export default {
     background: orangered;
     color: #fff;
     border: none;
-    border-radius: 10px;
+    border-radius: 5px;
     outline: none;
   }
   .more {
@@ -115,6 +118,10 @@ export default {
     line-height: 30px;
     text-align: center;
     font-size: 18px;
+  }
+  .btn-list {
+    display: flex;
+    justify-content: space-around;
   }
 }
 </style>
