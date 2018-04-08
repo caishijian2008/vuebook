@@ -12,7 +12,7 @@
             <b>{{book.bookPrice}}</b>
             <div class="btn-list">
               <button @click.stop="remove(book.bookId)">删除</button>
-              <button @click.stop="">+购物车</button>
+              <button @click.stop="addCart(book)">+购物车</button>
             </div>
           </div>
         </router-link>
@@ -26,11 +26,15 @@
 import MHeader from '@/base/MHeader'
 // import {getBooks, removeBook} from '../api'
 import {pagination, removeBook} from '../api' // 使用分页
+import * as Types from '../store/mutation_types'
 export default {
   created () {
     this.getData()
   },
   methods: {
+    addCart (book) {
+      this.$store.commit(Types.ADD_CART, book)
+    },
     loadMore () { // 滚动后自动加载更多
       clearTimeout(this.timer) // 节流
       // 触发scroll事件，可能会触发n次，先进来开一个定时器，下次触发时将上一次定时器清除掉
