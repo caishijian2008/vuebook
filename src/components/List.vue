@@ -89,31 +89,37 @@ export default {
       padding: 10px 0;
       border-bottom: 1px solid #f1f1f1;
       img {
-        width: 8em;
-        height: 9em;
+        width: 130px;
+        height: 150px;
+      }
+      h4 {
+        font-size: 18px;
+        line-height: 25px;
+      }
+      p {
+        color: #2a2a2a;
+        line-height: 25px;
+      }
+      b {
+        color: red;
+      }
+      .btn-list {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        margin: 8px;
+        button {
+          display: block;
+          width: 60px;
+          height: 25px;
+          background: orangered;
+          color: #fff;
+          border: none;
+          border-radius: 5px;
+          outline: none;
+        }
       }
     }
-  }
-  h3 {
-    font-size: 20px;
-    line-height: 35px;
-  }
-  p {
-    color: #2a2a2a;
-    line-height: 25px;
-  }
-  b {
-    color: red;
-  }
-  button {
-    display: block;
-    width: 60px;
-    height: 25px;
-    background: orangered;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    outline: none;
   }
   .more {
     margin: 10px;
@@ -122,10 +128,6 @@ export default {
     line-height: 30px;
     text-align: center;
     font-size: 18px;
-  }
-  .btn-list {
-    display: flex;
-    justify-content: space-around;
   }
 }
 </style>

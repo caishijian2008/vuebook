@@ -17,7 +17,10 @@ export default {
         pagination: {
           el: '.swiper-pagination'
         },
-        autoplay: 3500,
+        autoplay: {
+          delay: 3500,
+          disableOnInteraction: false
+        },
         setWrapperSize: true,
         observeParents: true
       }

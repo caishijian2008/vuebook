@@ -46,8 +46,8 @@ export default {
       padding: 10px 0;
       border-bottom: 1px solid #f1f1f1;
       img {
-        width: 8em;
-        height: 9em;
+        width: 130px;
+        height: 150px;
       }
       p {
         font-size: 18px;

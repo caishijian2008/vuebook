@@ -61,5 +61,15 @@ export default new Router({
       path: '*',
       redirect: '/home'
     }
-  ]
+  ],
+  // vue router滚动行为
+  scrollBehavior (to, from, savedPosition) {
+    console.log(to.path)
+    console.log(savedPosition)
+    if (savedPosition) {
+      return savedPosition
+    } else {
+      return { x: 0, y: 0 }
+    }
+  }
 })
