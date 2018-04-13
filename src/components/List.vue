@@ -9,7 +9,7 @@
           <div>
             <h4>{{book.bookName}}</h4>
             <p>{{book.bookInfo}}</p>
-            <b>{{book.bookPrice}}</b>
+            <b>{{book.bookPrice | toFixed(2)}}</b>
             <div class="btn-list">
               <button @click.stop="remove(book.bookId)">删除</button>
               <button @click.stop="addCart(book)">+购物车</button>
@@ -66,6 +66,11 @@ export default {
       }
     }
   },
+  filters: {
+    toFixed (input, param) {
+      return '￥' + input.toFixed(param)
+    }
+  },
   data () {
     return {
       books: [],
@@ -112,7 +117,7 @@ export default {
           display: block;
           width: 60px;
           height: 25px;
-          background: orangered;
+          background: #df3033;
           color: #fff;
           border: none;
           border-radius: 5px;

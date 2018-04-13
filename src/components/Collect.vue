@@ -8,7 +8,7 @@
           <div>
             <h3>{{cart.bookName}}</h3>
             <button>-</button>{{cart.bookCount}}<button>+</button>
-            <p>小计：{{cart.bookPrice * cart.bookCount}}</p>
+            <p>小计：{{cart.bookPrice * cart.bookCount | toFixed(2)}}</p>
             <button class="remove" @click.stop="">删除</button>
           </div>
         </li>
@@ -30,6 +30,11 @@ export default {
     // }
     ...mapState(['cartList']), // 等价于上面的用法
     ...mapGetters(['count'])
+  },
+  filters: {
+    toFixed (input, param) {
+      return '￥' + input.toFixed(param)
+    }
   },
   components: {
     MHeader
@@ -65,7 +70,7 @@ export default {
         font-size: 18px;
       }
       .remove {
-        background-color: orangered;
+        background-color: orangered; /*#df3033*/
         color: #fff;
       }
     }
