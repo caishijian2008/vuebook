@@ -7,9 +7,11 @@
           <img :src="cart.bookCover">
           <div>
             <h3>{{cart.bookName}}</h3>
-            <button>-</button>{{cart.bookCount}}<button>+</button>
+            <button @click.stop="changeCart">-</button>
+              {{cart.bookCount}}
+            <button @click.stop="changeCart">+</button>
             <p>小计：{{cart.bookPrice * cart.bookCount | toFixed(2)}}</p>
-            <button class="remove" @click.stop="">删除</button>
+            <button class="remove" @click.stop="remove(cart.bookId)">删除</button>
           </div>
         </li>
         <li>共{{count}}本</li>
@@ -22,13 +24,21 @@
 import MHeader from '@/base/MHeader'
 // 辅助函数，即语法糖
 import {mapState, mapGetters} from 'vuex'
-// console.log(mapState(['cartList']))
+import * as Types from '@/store/mutation_types'
 export default {
+  methods: {
+    changeCart () {
+      //
+    },
+    remove (bookId) {
+      let flag = window.confirm('确定要删除吗？')
+      if (flag) {
+        this.$store.commit(Types.REMOVE_CART, bookId)
+      }
+    }
+  },
   computed: {
-    // cartList () { // 在<li>中这样写很累赘，可采用语法糖mapState
-    //   return this.$store.state.cartList
-    // }
-    ...mapState(['cartList']), // 等价于上面的用法
+    ...mapState(['cartList']),
     ...mapGetters(['count'])
   },
   filters: {
