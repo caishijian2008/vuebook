@@ -7,14 +7,14 @@
           <img :src="cart.bookCover">
           <div>
             <h3>{{cart.bookName}}</h3>
-            <button @click.stop="changeCart">-</button>
-              {{cart.bookCount}}
-            <button @click.stop="changeCart">+</button>
+            <button @click.stop="">-</button>
+            <span>{{cart.bookCount}}</span>
+            <button @click.stop="changeCart(cart.bookId, btnType='add')">+</button>
             <p>小计：{{cart.bookPrice * cart.bookCount | toFixed(2)}}</p>
             <button class="remove" @click.stop="remove(cart.bookId)">删除</button>
           </div>
         </li>
-        <li>共{{count}}本</li>
+        <li>共{{allCount}}本</li>
       </ul>
     </div>
   </div>
@@ -27,8 +27,8 @@ import {mapState, mapGetters} from 'vuex'
 import * as Types from '@/store/mutation_types'
 export default {
   methods: {
-    changeCart () {
-      //
+    changeCart (bookId, btnType) {
+      this.$store.commit(Types.CHANGE_CART, {bookId, btnType})
     },
     remove (bookId) {
       let flag = window.confirm('确定要删除吗？')
@@ -39,7 +39,7 @@ export default {
   },
   computed: {
     ...mapState(['cartList']),
-    ...mapGetters(['count'])
+    ...mapGetters(['allCount'])
   },
   filters: {
     toFixed (input, param) {
@@ -48,6 +48,11 @@ export default {
   },
   components: {
     MHeader
+  },
+  data () {
+    return {
+      // btnType: {}
+    }
   }
 }
 </script>
