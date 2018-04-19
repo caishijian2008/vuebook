@@ -7,9 +7,9 @@
           <img :src="cart.bookCover">
           <div>
             <h3>{{cart.bookName}}</h3>
-            <button @click.stop="">-</button>
+            <button @click.stop="reduceCart(cart)" ref="reduce">-</button>
             <span>{{cart.bookCount}}</span>
-            <button @click.stop="changeCart(cart.bookId, btnType='add')">+</button>
+            <button @click.stop="addCart(cart.bookId)">+</button>
             <p>小计：{{cart.bookPrice * cart.bookCount | toFixed(2)}}</p>
             <button class="remove" @click.stop="remove(cart.bookId)">删除</button>
           </div>
@@ -27,8 +27,15 @@ import {mapState, mapGetters} from 'vuex'
 import * as Types from '@/store/mutation_types'
 export default {
   methods: {
-    changeCart (bookId, btnType) {
-      this.$store.commit(Types.CHANGE_CART, {bookId, btnType})
+    addCart (bookId) {
+      this.$store.commit(Types.PLUS_CART, {bookId})
+    },
+    reduceCart (cart) {
+      this.$store.commit(Types.REDUCE_CART, {bookId: cart.bookId})
+      if (cart.bookCount <= 1) {
+        console.log(this.$refs.reduce[0].style)
+        this.$refs.reduce.style.reduce[0].style.visibility = false
+      }
     },
     remove (bookId) {
       let flag = window.confirm('确定要删除吗？')

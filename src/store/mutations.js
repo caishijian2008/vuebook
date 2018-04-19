@@ -21,13 +21,23 @@ const mutations = {
     state.cartList = state.cartList.filter(item => item.bookId !== id)
   },
   // 更改商品数量
-  [Types.CHANGE_CART] (state, {bookId, btn}) {
+  [Types.PLUS_CART] (state, {bookId}) {
     console.log(bookId)
-    console.log(btn)
     let product = state.cartList.find(item => item.bookId === bookId)
     if (product) {
       product.bookCount += 1
       state.cartList = [...state.cartList]
+    }
+  },
+  [Types.REDUCE_CART] (state, {bookId}) {
+    console.log(bookId)
+    let product = state.cartList.find(item => item.bookId === bookId)
+    if (product) {
+      product.bookCount -= 1
+      state.cartList = [...state.cartList]
+    }
+    if (product.bookCount <= 1) {
+      product.bookCount = 1
     }
   }
 }
