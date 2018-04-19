@@ -2,13 +2,12 @@ import axios from 'axios'
 // 增加默认的请求的路径
 axios.defaults.baseURL = 'http://localhost:3000' // build前可注释此行，build后恢复此行
 // axios拦截器
-// 在这里统一拦截结果，把结果处理成res.data
-// 因此在组件中调用下面的方法后就不需要再解构出data了，参考【Home.vue】
+// 在这里统一拦截结果，把结果处理成res.data，参考【Home.vue】
 axios.interceptors.response.use(function (res) {
   return res.data
 })
 
-// 获取轮播图数据，返回的是一个promise对象
+// 获取轮播图数据
 export let getSliders = () => {
   return axios.get('/sliders')
 }

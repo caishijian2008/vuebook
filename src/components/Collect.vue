@@ -33,8 +33,10 @@ export default {
     reduceCart (cart) {
       this.$store.commit(Types.REDUCE_CART, {bookId: cart.bookId})
       if (cart.bookCount <= 1) {
-        console.log(this.$refs.reduce[0].style)
-        this.$refs.reduce.style.reduce[0].style.visibility = false
+        console.log(this.$refs.reduce)
+        this.$nextTick(() => {
+          this.$refs.reduce[0].disable = true
+        })
       }
     },
     remove (bookId) {
