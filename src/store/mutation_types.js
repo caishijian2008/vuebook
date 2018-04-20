@@ -9,3 +9,5 @@ export const PLUS_CART = 'PLUS_CART'
 export const REDUCE_CART = 'REDUCE_CART'
 // 清空购物车
 export const CLEAR_CART = 'CLEAR_CART'
+// 初始化购物车
+export const INIT_BUYCART = 'INIT_BUYCART'

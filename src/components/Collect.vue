@@ -23,21 +23,18 @@
 <script>
 import MHeader from '@/base/MHeader'
 // 辅助函数，即语法糖
-import {mapState, mapGetters} from 'vuex'
+import {mapGetters, mapState} from 'vuex'
 import * as Types from '@/store/mutation_types'
 export default {
+  created () {
+    this.$store.commit(Types.INIT_BUYCART)
+  },
   methods: {
     addCart (bookId) {
       this.$store.commit(Types.PLUS_CART, {bookId})
     },
     reduceCart (cart) {
       this.$store.commit(Types.REDUCE_CART, {bookId: cart.bookId})
-      if (cart.bookCount <= 1) {
-        console.log(this.$refs.reduce)
-        this.$nextTick(() => {
-          this.$refs.reduce[0].disable = true
-        })
-      }
     },
     remove (bookId) {
       let flag = window.confirm('确定要删除吗？')
@@ -60,7 +57,7 @@ export default {
   },
   data () {
     return {
-      // btnType: {}
+      //
     }
   }
 }
