@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="carts">
     <MHeader>购物车</MHeader>
     <div class="content">
       <ul>
@@ -7,15 +7,17 @@
           <img :src="cart.bookCover">
           <div>
             <h3>{{cart.bookName}}</h3>
-            <button @click.stop="reduceCart(cart)" ref="reduce">-</button>
+            <button @click.stop="reduceCart(cart)">-</button>
             <span>{{cart.bookCount}}</span>
             <button @click.stop="addCart(cart.bookId)">+</button>
             <p>小计：{{cart.bookPrice * cart.bookCount | toFixed(2)}}</p>
             <button class="remove" @click.stop="remove(cart.bookId)">删除</button>
           </div>
         </li>
-        <li>共{{allCount}}本</li>
       </ul>
+    </div>
+    <div class="cart-footer">
+      <li>共{{allCount}}本</li>
     </div>
   </div>
 </template>
@@ -64,7 +66,19 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.cart-footer {
+  position: absolute;
+  bottom: 50px;
+  left: 0;
+  display: flex;
+  align-items: center;
+  z-index: 13;
+  width: 100%;
+  height: 35px;
+  background: #ccc;
+}
 .content {
+  margin-bottom: 30px;
   ul {
     padding: 10px;
     li {

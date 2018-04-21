@@ -64,8 +64,8 @@ export default new Router({
   ],
   // vue router滚动行为
   scrollBehavior (to, from, savedPosition) {
-    console.log(to.path)
-    console.log(savedPosition)
+    // console.log(to.path)
+    // console.log(savedPosition)
     if (savedPosition) {
       return savedPosition
     } else {

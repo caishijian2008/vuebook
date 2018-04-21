@@ -3,13 +3,11 @@ import {setStorage, getStorage} from '../api/myutils'
 const mutations = {
   // 添加到购物车
   [Types.ADD_CART] (state, book) {
-    // book 是添加的一本书，如果有这本书累加的是数量，如果没有数量为1，放到cartList中
     let product = state.cartList.find(item => item.bookId === book.bookId)
     if (product) {
       product.bookCount += 1
-      // 还要更新掉原数组，否则不会刷新
+      // 更新掉原数组，否则不会刷新
       state.cartList = [...state.cartList]
-      console.log(state.cartList)
       setStorage('buycart', state.cartList)
     } else {
       book.bookCount = 1
