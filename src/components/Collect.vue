@@ -4,9 +4,10 @@
     <div class="content">
       <ul>
         <li v-for="(cart, index) in cartList" :key="index">
+          <input type="checkbox">
           <img :src="cart.bookCover">
           <div>
-            <h3>{{cart.bookName}}</h3>
+            <h4>{{cart.bookName}}</h4>
             <button @click.stop="reduceCart(cart)">-</button>
             <span>{{cart.bookCount}}</span>
             <button @click.stop="addCart(cart.bookId)">+</button>
@@ -17,7 +18,9 @@
       </ul>
     </div>
     <div class="cart-footer">
-      <li>共{{allCount}}本</li>
+      <input type="checkbox" v-model="checkAll">全选
+      <span>共{{allCount}}本</span>
+      <button>去结算</button>
     </div>
   </div>
 </template>
@@ -47,7 +50,13 @@ export default {
   },
   computed: {
     ...mapState(['cartList']),
-    ...mapGetters(['allCount'])
+    ...mapGetters(['allCount']),
+    checkAll: {
+      get () {
+        // return alert('sd')
+      },
+      set (val) {}
+    }
   },
   filters: {
     toFixed (input, param) {
@@ -90,7 +99,7 @@ export default {
         height: 150px;
       }
       p {
-        font-size: 18px;
+        font-size: 16px;
       }
       button {
         width: 60px;

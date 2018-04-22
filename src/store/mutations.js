@@ -11,6 +11,7 @@ const mutations = {
       setStorage('buycart', state.cartList)
     } else {
       book.bookCount = 1
+      book.isSelected = true
       // 将原有数据改变，或者可以替换
       // state.cartList.push(book)
       // 或者: 用新数组替换掉老数组
@@ -20,7 +21,10 @@ const mutations = {
   },
   // 删除购物车
   [Types.REMOVE_CART] (state, id) {
-    state.cartList = state.cartList.filter(item => item.bookId !== id)
+    state.cartList = state.cartList.filter(item => {
+      item.isSelected = false
+      return item.bookId !== id
+    })
     setStorage('buycart', state.cartList)
   },
   // 更改商品数量
