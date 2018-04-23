@@ -4,7 +4,7 @@
     <div class="content">
       <ul>
         <li v-for="(cart, index) in cartList" :key="index">
-          <input type="checkbox">
+          <input type="checkbox" v-model="cart.isSelected">
           <img :src="cart.bookCover">
           <div>
             <h4>{{cart.bookName}}</h4>
@@ -19,8 +19,9 @@
     </div>
     <div class="cart-footer">
       <input type="checkbox" v-model="checkAll">全选
-      <span>共{{allCount}}本</span>
-      <button>去结算</button>
+      <!-- <span>共{{allCount}}本</span> -->
+      <span class="all-price">总计：{{allPrice | toFixed(2)}}</span>
+      <button class="settle-accounts">去结算(<span>{{allCount}}件</span>)</button>
     </div>
   </div>
 </template>
@@ -50,12 +51,14 @@ export default {
   },
   computed: {
     ...mapState(['cartList']),
-    ...mapGetters(['allCount']),
+    ...mapGetters(['allCount', 'allPrice']),
     checkAll: {
       get () {
-        // return alert('sd')
+        return this.cartList.every(p => p.isSelected)
       },
-      set (val) {}
+      set (val) {
+        this.cartList.forEach(item => (item.isSelected = val))
+      }
     }
   },
   filters: {
@@ -68,7 +71,7 @@ export default {
   },
   data () {
     return {
-      //
+      // cartList: []
     }
   }
 }
@@ -85,6 +88,23 @@ export default {
   width: 100%;
   height: 35px;
   background: #ccc;
+  .all-price {
+    margin-left: 20px;
+  }
+  .settle-accounts {
+    position: absolute;
+    right: 0;
+    border: none;
+    outline: none;
+    color: #fff;
+    background: #ff0000;
+    height: 100%;
+    width: 8rem;
+    font-size: 16px;
+    span {
+      font-size: 10px;
+    }
+  }
 }
 .content {
   margin-bottom: 30px;

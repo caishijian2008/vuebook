@@ -29,7 +29,6 @@ const mutations = {
   },
   // 更改商品数量
   [Types.PLUS_CART] (state, {bookId}) {
-    console.log(bookId)
     let product = state.cartList.find(item => item.bookId === bookId)
     if (product) {
       product.bookCount += 1
@@ -38,7 +37,6 @@ const mutations = {
     }
   },
   [Types.REDUCE_CART] (state, {bookId}) {
-    console.log(bookId)
     let product = state.cartList.find(item => item.bookId === bookId)
     if (product) {
       product.bookCount -= 1

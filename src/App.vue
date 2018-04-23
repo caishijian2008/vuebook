@@ -35,7 +35,8 @@ export default {
 }
 ul, li {list-style: none;}
 a {text-decoration: none;}
-input, button {-webkit-appearance: none;}
+/* input, button {-webkit-appearance: none;} */
+button {-webkit-appearance: none;}
 .content {position: fixed; width: 100%; top: 40px; bottom: 50px; overflow: auto;}
 .fadeIn {
   opacity: 0;
