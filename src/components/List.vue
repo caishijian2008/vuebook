@@ -110,9 +110,10 @@ export default {
       }
       .btn-list {
         display: flex;
-        justify-content: space-around;
+        // justify-content: space-around;
         align-items: center;
-        margin: 8px;
+        position: absolute;
+        margin: 10px;
         button {
           display: block;
           width: 60px;
@@ -122,6 +123,7 @@ export default {
           border: none;
           border-radius: 5px;
           outline: none;
+          margin: 0 15px;
         }
       }
     }

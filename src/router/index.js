@@ -22,6 +22,7 @@ export default new Router({
     {
       path: '/home',
       component: () => import('@/components/Home'), // 使用了路由懒加载
+      name: 'home',
       meta: {
         keepAlive: true,
         title: '首页'

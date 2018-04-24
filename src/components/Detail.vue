@@ -4,6 +4,9 @@
     <div class="content">
       <ul>
         <li>
+          <img :src="book.bookCover" id="bookCover" />
+        </li>
+        <li>
           <label for="bookName">书名</label>
           <input type="text" v-model="book.bookName" id="bookName">
         </li>
@@ -38,6 +41,7 @@ export default {
   methods: {
     async update () { // 修改图书信息
       await updateBook(this.bid, this.book)
+      alert('修改成功！')
       this.$router.push('/list') // 修改完成后跳转页面
     },
     async getBook () { // 通过id找到某一项后赋给book
@@ -76,15 +80,19 @@ export default {
   z-index: 999;
 }
 ul {
-  margin: 50px 20px 0 20px;
+  margin: 20px 20px 5px 20px;
   li {
+    img {
+      margin: 10px 0;
+    }
     label {
       display: block;
+      margin: 5px 0;
     }
     input {
       margin: 10px 0;
       width: 100%;
-      height: 25px;
+      height: 31px;
     }
     button {
       display: block;

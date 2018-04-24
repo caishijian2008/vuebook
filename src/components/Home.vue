@@ -8,10 +8,10 @@
         <div class="container">
           <h4>热门图书</h4>
           <ul>
-            <li v-for="(hot, index) in hotBooks" :key="index">
+            <router-link v-for="(hot, index) in hotBooks" :key="index" :to="{name: 'detail', params: {bid: hot.bookId}}" tag="li">
               <img :src="hot.bookCover">
               <p>{{hot.bookName}}</p>
-            </li>
+            </router-link>
           </ul>
         </div>
       </template>
