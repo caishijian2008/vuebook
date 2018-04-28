@@ -11,3 +11,6 @@ export const REDUCE_CART = 'REDUCE_CART'
 export const CLEAR_CART = 'CLEAR_CART'
 // 初始化购物车
 export const INIT_BUYCART = 'INIT_BUYCART'
+// 全选商品
+export const CHECK_ALL = 'CHECK_ALL'
+export const CHECK_ONE = 'CHECK_ONE'

@@ -4,7 +4,7 @@
     <div class="content">
       <ul>
         <li v-for="(cart, index) in cartList" :key="index">
-          <!-- <input type="checkbox" v-model="cart.isSelected"> -->
+          <input type="checkbox" v-model="checkAll">
           <img :src="cart.bookCover">
           <div>
             <h4>{{cart.bookName}}</h4>
@@ -18,7 +18,7 @@
       </ul>
     </div>
     <div class="cart-footer">
-      <!-- <input type="checkbox" v-model="checkAll">全选 -->
+      <input type="checkbox" v-model="checkAll">全选
       <!-- <span>共{{allCount}}本</span> -->
       <span class="all-price">总计：{{allPrice | toFixed(2)}}</span>
       <button class="settle-accounts">去结算(<span>{{allCount}}件</span>)</button>
@@ -57,7 +57,7 @@ export default {
         return this.cartList.every(p => p.isSelected)
       },
       set (val) {
-        this.cartList.forEach(item => (item.isSelected = val))
+        this.$store.commit(Types.CHECK_ALL, val)
       }
     }
   },
@@ -71,7 +71,7 @@ export default {
   },
   data () {
     return {
-      // cartList: []
+      // : []
     }
   }
 }

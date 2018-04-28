@@ -44,7 +44,7 @@ export default {
     async getBook () { // 通过id找到某一项后赋给book
       this.book = await findOneBook(this.bid)
       // 如果是空对象，需要跳转回列表页【难点】
-      // 思路：JSON.stringify(this.book) === '{}' 或者 JSON.stringify(this.book).length === 0
+      // JSON.stringify(this.book) === '{}' 或者 JSON.stringify(this.book).length === 0
       console.log(Object.keys(this.book))
       Object.keys(this.book).length > 0 ? void 0 : this.$router.push('/list')
     }

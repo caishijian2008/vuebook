@@ -37,7 +37,6 @@ export default {
     },
     loadMore () { // 滚动后自动加载更多
       clearTimeout(this.timer) // 节流
-      // 触发scroll事件，可能会触发n次，先进来开一个定时器，下次触发时将上一次定时器清除掉
       this.timer = setTimeout(() => {
         //   卷去的高度   当前可见区域      总高度
         let {scrollTop, clientHeight, scrollHeight} = this.$refs.scroll
@@ -46,12 +45,13 @@ export default {
         }
       }, 500)
     },
-    more () { // 加载更多
+    // 加载更多
+    more () {
       this.getData()
     },
-    async remove (id) { // 删某一项
+    // 删除一项
+    async remove (id) {
       await removeBook(id)
-      // 后台删了，前台也要删除
       this.books = this.books.filter(item => item.bookId !== id)
     },
     async getData () {
@@ -62,7 +62,7 @@ export default {
         this.books = [...this.books, ...books] // 原来的书 + 分页的书【难点】
         this.hasMore = hasMore
         this.isLoading = false // 加载完毕
-        this.offset = this.books.length // 维护偏移量，就是总共书的数量【难点】
+        this.offset = this.books.length // 维护偏移量【难点】
       }
     }
   },

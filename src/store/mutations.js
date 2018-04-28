@@ -60,6 +60,12 @@ const mutations = {
     if (initcart) {
       state.cartList = JSON.parse(initcart)
     }
+  },
+  [Types.CHECK_ALL] (state, message) {
+    state.cartList.forEach(item => (item.isSelected = message))
+  },
+  [Types.CHECK_ONE] (state) {
+    state.cartList.every(p => p.isSelected)
   }
 }
 
