@@ -7,16 +7,19 @@
           <img :src="book.bookCover" id="bookCover" />
         </li>
         <li>
-          <!-- <label for="bookName">书名</label> -->
-          <h3 id="bookName">{{book.bookName}}</h3>
+          <label for="bookName">书名</label>
+          <input type="text" v-model="book.bookName" id="bookName">
         </li>
         <li>
-          <label for="bookPrice">价格：</label>
-          <span class="book-price" id="bookPrice">{{book.bookPrice | toFixed(2)}}</span>
+          <label for="bookInfo">信息</label>
+          <input type="text" v-model="book.bookInfo" id="bookInfo">
         </li>
         <li>
-          <label for="bookInfo" style="display: block;">介绍：</label>
-          <span id="bookInfo">{{book.bookInfo}}</span>
+          <label for="bookPrice">价格</label>
+          <input type="number" v-model.number="book.bookPrice" id="bookPrice">
+        </li>
+        <li>
+          <button @click="update">确认修改</button>
         </li>
       </ul>
     </div>
@@ -55,11 +58,6 @@ export default {
       return this.$route.params.bid
     }
   },
-  filters: {
-    toFixed (input, param) {
-      return '￥' + input.toFixed(param)
-    }
-  },
   components: {
     MHeader
   },
@@ -87,22 +85,15 @@ ul {
     img {
       margin: 10px 0;
     }
-    h3 {
-      margin-bottom: 5px;
-    }
     label {
-      // display: block;
+      display: block;
       margin: 5px 0;
-      font-weight: 200;
     }
-    .book-price {
-      color: red;
+    input {
+      margin: 10px 0;
+      width: 100%;
+      height: 31px;
     }
-    // span {
-    //   margin: 10px 0;
-    //   width: 100%;
-    //   height: 31px;
-    // }
     button {
       display: block;
       width: 80px;
