@@ -18,7 +18,8 @@
       </ul>
     </div>
     <div class="cart-footer">
-      <input type="checkbox" v-model="checkAll">全选
+      <input type="checkbox" v-model="checkAll" id="chkb">
+      <label for="chkb">全选</label>
       <!-- <span>共{{allCount}}本</span> -->
       <span class="all-price">总计：{{allPrice | toFixed(2)}}</span>
       <button class="settle-accounts">去结算(<span>{{allCount}}件</span>)</button>
@@ -51,10 +52,10 @@ export default {
   },
   computed: {
     ...mapState(['cartList']),
-    ...mapGetters(['allCount', 'allPrice']),
+    ...mapGetters(['allCount', 'allPrice', 'getCartAll']),
     checkAll: {
       get () {
-        return this.cartList.every(p => p.isSelected)
+        return this.getCartAll
       },
       set (val) {
         this.$store.commit(Types.CHECK_ALL, val)

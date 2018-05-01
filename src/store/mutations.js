@@ -63,10 +63,10 @@ const mutations = {
   },
   [Types.CHECK_ALL] (state, message) {
     state.cartList.forEach(item => (item.isSelected = message))
-  },
-  [Types.CHECK_ONE] (state) {
-    state.cartList.every(p => p.isSelected)
   }
+  // [Types.CHECK_ONE] (state) {
+  //   state.cartList.every(p => p.isSelected)
+  // }
 }
 
 export default mutations
