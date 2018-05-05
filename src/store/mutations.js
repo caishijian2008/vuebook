@@ -61,11 +61,11 @@ const mutations = {
       state.cartList = JSON.parse(initcart)
     }
   },
-  [Types.CHECK_ALL] (state, message) {
-    state.cartList.forEach(item => (item.isSelected = message))
+  [Types.CHECK_ALL] (state, val) {
+    state.cartList.forEach(item => (item.isSelected = val))
   }
   // [Types.CHECK_ONE] (state) {
-  //   state.cartList.every(p => p.isSelected)
+  //   state.cartList.every(item => item.isSelected)
   // }
 }
 

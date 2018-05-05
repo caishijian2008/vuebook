@@ -45,6 +45,17 @@ router.beforeEach(function (to, from, next) {
   next()
 })
 ```
+## 关于轮播图添加.wrapper的目的
+-- .wrapper 网速慢时防抖！
+``` css
+.wrapper {
+  overflow: hidden;
+  width: 100%;
+  height: 0;
+  padding-bottom: 46.38%;
+}
+```
+其中的 46.38% 是图片真实的高宽比，如此便能保证网速加载慢时有一个高度容纳轮播图，不至于后面的内容顶上去，四行代码缺一不可！
 
 ## Build Setup
 
