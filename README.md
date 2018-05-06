@@ -1,4 +1,4 @@
-# vuebook
+# vuebook （v1.0.0）
 
 > A Vue.js project
 - mock 模拟数据
