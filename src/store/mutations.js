@@ -19,7 +19,7 @@ const mutations = {
       setStorage('buycart', state.cartList)
     }
   },
-  // 删除购物车
+  // 删除购物车商品
   [Types.REMOVE_CART] (state, id) {
     state.cartList = state.cartList.filter(item => {
       item.isSelected = false
@@ -50,8 +50,9 @@ const mutations = {
   },
   // 清空购物车
   [Types.CLEAR_CART] (state) {
-    state.cartList = null
+    state.cartList = []
     state.cartList = [...state.cartList]
+    console.log(state.cartList)
     setStorage('buycart', state.cartList)
   },
   // 初始化购物车

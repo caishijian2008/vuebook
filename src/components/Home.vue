@@ -64,7 +64,7 @@ export default {
     return {
       sliders: [],
       hotBooks: [],
-      loading: false // 添加正在加载的效果
+      loading: true // 添加正在加载的效果
     }
   },
   components: {

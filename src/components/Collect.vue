@@ -21,7 +21,10 @@
       <!-- <input type="checkbox" v-model="checkAll" id="chkb">
       <label for="chkb">全选</label> -->
       <!-- <span>共{{allCount}}本</span> -->
-      <span class="all-price">总计：{{allPrice | toFixed(2)}}</span>
+      <div class="al">
+        <span>总计：{{allPrice | toFixed(2)}}</span>
+        <span class="clrc" @click="clearCart">清空购物车</span>
+      </div>
       <button class="settle-accounts">去结算(<span>{{allCount}}件</span>)</button>
     </div>
   </div>
@@ -37,6 +40,9 @@ export default {
     this.$store.commit(Types.INIT_BUYCART)
   },
   methods: {
+    clearCart () {
+      this.$store.commit(Types.CLEAR_CART)
+    },
     addCart (bookId) {
       this.$store.commit(Types.PLUS_CART, {bookId})
     },
@@ -89,10 +95,16 @@ export default {
   align-items: center;
   z-index: 13;
   width: 100%;
-  height: 35px;
+  height: 50px;
   background: #ccc;
-  .all-price {
+  .al {
+    display: flex;
+    flex-direction: column;
     margin-left: 20px;
+    .clrc {
+      color: rgb(255, 0, 0);
+      text-decoration: underline;
+    }
   }
   .settle-accounts {
     position: absolute;
@@ -110,7 +122,7 @@ export default {
   }
 }
 .content {
-  margin-bottom: 30px;
+  margin-bottom: 50px;
   ul {
     padding: 10px;
     li {
