@@ -46,7 +46,7 @@ router.beforeEach(function (to, from, next) {
 })
 ```
 ## 关于轮播图添加.wrapper的目的
--- .wrapper 网速慢时防抖！
+- .wrapper 网速慢时防抖！
 ``` css
 .wrapper {
   overflow: hidden;
