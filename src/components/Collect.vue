@@ -27,6 +27,7 @@
       </div>
       <button class="settle-accounts">去结算(<span>{{allCount}}件</span>)</button>
     </div>
+    <confirmtip v-if="showAlert" :alertText="alertText" @sureTip="sureTip" @cancleTip="cancleTip"></confirmtip>
   </div>
 </template>
 
@@ -35,13 +36,15 @@ import MHeader from '@/base/MHeader'
 // 辅助函数，即语法糖
 import {mapGetters, mapState} from 'vuex'
 import * as Types from '@/store/mutation_types'
+import confirmtip from '@/base/ConfirmTip'
 export default {
   created () {
     this.$store.commit(Types.INIT_BUYCART)
   },
   methods: {
     clearCart () {
-      this.$store.commit(Types.CLEAR_CART)
+      this.showAlert = true
+      this.alertText = '清空购物车？'
     },
     addCart (bookId) {
       this.$store.commit(Types.PLUS_CART, {bookId})
@@ -54,6 +57,14 @@ export default {
       if (flag) {
         this.$store.commit(Types.REMOVE_CART, bookId)
       }
+    },
+    sureTip (val) {
+      console.log(val)
+      this.showAlert = false
+      this.$store.commit(Types.CLEAR_CART)
+    },
+    cancleTip () {
+      this.showAlert = false
     }
   },
   computed: {
@@ -61,7 +72,7 @@ export default {
     ...mapGetters(['allCount', 'allPrice', 'getCartAll']),
     checkAll: {
       get () {
-        // return this.cartList.every(p => p.isSelected)
+        // return this.cartList.every(item => item.isSelected)
         return this.getCartAll
       },
       set (val) {
@@ -76,10 +87,13 @@ export default {
     }
   },
   components: {
-    MHeader
+    MHeader,
+    confirmtip
   },
   data () {
     return {
+      showAlert: false,
+      alertText: ''
       // cartList: []
     }
   }

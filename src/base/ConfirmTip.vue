@@ -6,14 +6,17 @@
             <span></span>
         </div>
         <p class="tip_text">{{alertText}}</p>
-        <div class="confrim" @click="closeTip">确认</div>
+        <div class="buttontip">
+          <div class="cancle" @click="cancleTip">取消</div>
+          <div class="confrim" @click="sureTip">确认</div>
+        </div>
       </section>
     </div>
 </template>
 
 <script>
 export default {
-  name: 'AlertTip',
+  name: 'ConfirmTip',
   data () {
     return {
       positionY: 0,
@@ -22,8 +25,13 @@ export default {
   },
   props: ['alertText'],
   methods: {
-    closeTip () {
-      this.$emit('closeTip')
+    // 确认
+    sureTip () {
+      this.$emit('sureTip', true)
+    },
+    // 取消
+    cancleTip () {
+      this.$emit('cancleTip', false)
     }
   }
 }
@@ -107,17 +115,35 @@ export default {
     margin-top: 0.8rem;
     padding: 0 0.4rem;
   }
-  .confrim {
-    @include sc(0.8rem, #fff);
-    font-weight: bold;
-    margin-top: 0.8rem;
-    background-color: #4cd964;
+  .buttontip {
+    display: flex;
+    flex:1;
+    justify-content: space-around;
     width: 100%;
-    text-align: center;
-    line-height: 1.8rem;
-    border: 1px;
-    border-bottom-left-radius: 0.25rem;
-    border-bottom-right-radius: 0.25rem;
+    .cancle {
+      @include sc(0.8rem, #fff);
+      font-weight: bold;
+      margin-top: 0.8rem;
+      background-color: #e7a043;
+      width: 100%;
+      text-align: center;
+      line-height: 1.8rem;
+      border: 1px;
+      border-bottom-left-radius: 0.25rem;
+      border-bottom-right-radius: 0.25rem;
+    }
+    .confrim {
+      @include sc(0.8rem, #fff);
+      font-weight: bold;
+      margin-top: 0.8rem;
+      background-color: #4cd964;
+      width: 100%;
+      text-align: center;
+      line-height: 1.8rem;
+      border: 1px;
+      border-bottom-left-radius: 0.25rem;
+      border-bottom-right-radius: 0.25rem;
+    }
   }
 }
 </style>
