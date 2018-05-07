@@ -52,7 +52,6 @@ const mutations = {
   [Types.CLEAR_CART] (state) {
     state.cartList = []
     state.cartList = [...state.cartList]
-    console.log(state.cartList)
     setStorage('buycart', state.cartList)
   },
   // 初始化购物车
@@ -62,6 +61,7 @@ const mutations = {
       state.cartList = JSON.parse(initcart)
     }
   },
+  // 全选
   [Types.CHECK_ALL] (state, val) {
     state.cartList.forEach(item => (item.isSelected = val))
   }

@@ -28,16 +28,37 @@ export default {
 }
 </script>
 
-<style>
-* {
-  margin: 0;
-  padding: 0;
+<style lang="scss">
+body, div, span, header, footer, nav, section, aside, article, ul, dl, dt, dd, li, a, p, h1, h2, h3, h4,h5, h6, i, b, textarea, button, input, select, figure, figcaption, {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    font-style: normal;
+    text-decoration: none;
+    // border: none;
+    font-weight: normal;
+    font-family: "Microsoft Yahei";
+    box-sizing: border-box;
+    -webkit-tap-highlight-color:transparent;
+    -webkit-font-smoothing: antialiased;
+    &:hover{
+        outline: none;
+    }
 }
-ul, li {list-style: none;}
-a {text-decoration: none;}
+html {
+  font-size: 16px;
+}
+// ul, li {list-style: none;}
+// a {text-decoration: none;}
 /* input, button {-webkit-appearance: none;} */
 button {-webkit-appearance: none;}
-.content {position: fixed; width: 100%; top: 40px; bottom: 50px; overflow: auto;}
+.content {
+  position: fixed;
+  width: 100%;
+  top: 2.5rem;
+  bottom: 3.13rem;
+  overflow: auto;
+}
 .fadeIn {
   opacity: 0;
 }

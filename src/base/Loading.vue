@@ -16,16 +16,16 @@ export default {
 
 <style lang="scss" scoped>
 .spinner {
-  margin: 100px auto;
-  width: 50px;
-  height: 60px;
+  margin: 6.25rem auto;
+  width: 3.13rem;
+  height: 3.75rem;
   text-align: center;
-  font-size: 10px;
+  font-size: .63rem;
 }
 .spinner > div {
   background-color: #67CF22;
   height: 100%;
-  width: 6px;
+  width: .375rem;
   display: inline-block;
   -webkit-animation: stretchdelay 1.2s infinite ease-in-out;
   animation: stretchdelay 1.2s infinite ease-in-out;

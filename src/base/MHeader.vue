@@ -29,13 +29,13 @@ export default {
   width: 100%;
   background:seagreen;
   color: #fff;
-  height: 40px;
+  height: 2.5rem;
   text-align: center;
-  line-height: 40px;
+  line-height: 2.5rem;
   font-weight: bold;
   i {
     position: absolute;
-    left: 20px;
+    left: 1.25rem;
   }
 }
 </style>

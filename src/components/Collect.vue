@@ -107,14 +107,14 @@ export default {
   left: 0;
   display: flex;
   align-items: center;
-  z-index: 13;
+  z-index: 130;
   width: 100%;
   height: 50px;
   background: #ccc;
   .al {
     display: flex;
     flex-direction: column;
-    margin-left: 20px;
+    margin-left: 1.25rem;
     .clrc {
       color: rgb(255, 0, 0);
       text-decoration: underline;
@@ -129,38 +129,38 @@ export default {
     background: #ff0000;
     height: 100%;
     width: 8rem;
-    font-size: 16px;
+    font-size: 1rem;
     span {
-      font-size: 10px;
+      font-size: .63rem;
     }
   }
 }
 .content {
-  margin-bottom: 50px;
+  margin-bottom: 3.13rem;
   ul {
-    padding: 10px;
+    padding: .63rem;
     li {
       display: flex;
-      padding: 10px 0;
+      padding: .63rem 0;
       border-bottom: 1px solid #f1f1f1;
       img {
-        width: 130px;
-        height: 150px;
+        width: 8.13rem;
+        height: 9.38rem;
       }
       p {
-        font-size: 16px;
+        font-size: 1rem;
       }
       button {
-        width: 60px;
-        height: 25px;
+        width: 3.75rem;
+        height: 1.56rem;
         background: #ccc;
         color: #000;
         border: none;
         border-radius: 5px;
         outline: none;
-        margin: 5px;
+        margin: .31rem;
         text-align: center;
-        font-size: 18px;
+        font-size: 1.13rem;
       }
       .remove {
         background-color: orangered; /*#df3033*/

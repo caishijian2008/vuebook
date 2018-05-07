@@ -88,22 +88,22 @@ export default {
 <style lang="scss" scoped>
 .content {
   ul {
-    padding: 10px;
+    padding: .63rem;
     li {
       display: flex;
-      padding: 10px 0;
+      padding: .63rem 0;
       border-bottom: 1px solid #f1f1f1;
       img {
-        width: 130px;
-        height: 150px;
+        width: 8.13rem;
+        height: 9.38rem;
       }
       h4 {
-        font-size: 18px;
-        line-height: 25px;
+        font-size: 1.13rem;
+        line-height: 1.56rem;
       }
       p {
         color: #2a2a2a;
-        line-height: 25px;
+        line-height: 1.56rem;
       }
       b {
         color: red;
@@ -113,28 +113,28 @@ export default {
         // justify-content: space-around;
         align-items: center;
         position: absolute;
-        margin: 10px;
+        margin: .63rem;
         button {
           display: block;
-          width: 60px;
-          height: 25px;
+          width: 3.75rem;
+          height: 1.56rem;
           background: #df3033;
           color: #fff;
           border: none;
           border-radius: 5px;
           outline: none;
-          margin: 0 15px;
+          margin: 0 .94rem;
         }
       }
     }
   }
   .more {
-    margin: 10px;
+    margin: .63rem;
     background: #2afedd;
-    height: 30px;
-    line-height: 30px;
+    height: 1.88rem;
+    line-height: 1.88rem;
     text-align: center;
-    font-size: 18px;
+    font-size: 1.13rem;
   }
 }
 </style>

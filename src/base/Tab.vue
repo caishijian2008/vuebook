@@ -32,7 +32,7 @@ router-link-exact-active router-link-active
   left: 0;
   bottom: 0;
   width: 100%;
-  height: 50px;
+  height: 3.13rem;
   display: flex;
   border-top: 1px solid #ccc;
   a {

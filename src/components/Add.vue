@@ -54,20 +54,20 @@ export default {
 <style lang="scss" scoped>
 .content {
   ul {
-    margin: 50px 20px 0 20px;
+    margin: 3.13rem 1.25rem 0;
     li {
       label {
         display: block;
       }
       input {
-        margin: 10px 0;
+        margin: .63rem 0;
         width: 100%;
-        height: 25px;
+        height: 1.56rem;
       }
       button {
         display: block;
-        width: 80px;
-        height: 25px;
+        width: 5rem;
+        height: 1.56rem;
         background: rgb(255, 82, 1);
         color: #fff;
         border: none;

@@ -79,18 +79,18 @@ export default {
 .container {
   h4 {
     color: #999;
-    padding: 5px 0;
+    padding: .31rem 0;
   }
   width: 90%;
   margin: 0 auto;
   ul {
     display: flex;
     flex-wrap: wrap; /* 默认不换行，即 nowrap */
-    padding-bottom: 10px;
+    padding-bottom: .63rem;
     li {
       width: 50%;
       text-align: center;
-      margin: 5px 0;
+      margin: .31rem 0;
       img {
         width: 100%;
       }

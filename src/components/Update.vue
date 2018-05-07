@@ -83,21 +83,21 @@ ul {
   margin: 20px 20px 5px 20px;
   li {
     img {
-      margin: 10px 0;
+      margin: .63rem 0;
     }
     label {
       display: block;
       margin: 5px 0;
     }
     input {
-      margin: 10px 0;
+      margin: .63rem 0;
       width: 100%;
       height: 31px;
     }
     button {
       display: block;
-      width: 80px;
-      height: 25px;
+      width: 5rem;
+      height: 1.56rem;
       background: rgb(255, 82, 1);
       color: #fff;
       border: none;

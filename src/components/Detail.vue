@@ -82,10 +82,10 @@ export default {
   z-index: 999;
 }
 ul {
-  margin: 20px 20px 5px 20px;
+  margin: 20px 20px 5px;
   li {
     img {
-      margin: 10px 0;
+      margin: .63rem 0;
     }
     h3 {
       margin-bottom: 5px;
@@ -99,14 +99,14 @@ ul {
       color: red;
     }
     // span {
-    //   margin: 10px 0;
+    //   margin: .63rem 0;
     //   width: 100%;
     //   height: 31px;
     // }
     button {
       display: block;
-      width: 80px;
-      height: 25px;
+      width: 5rem;
+      height: 1.56rem;
       background: rgb(255, 82, 1);
       color: #fff;
       border: none;
