@@ -27,7 +27,7 @@
       </div>
       <button class="settle-accounts">去结算(<span>{{allCount}}件</span>)</button>
     </div>
-    <confirmtip v-if="showAlert" :alertText="alertText" @sureTip="sureTip" @cancleTip="cancleTip"></confirmtip>
+    <confirmtip v-if="showAlert" :alertText="alertText" @sureTip="sureTip" @cancleTip="cancleTip" ref="confirm"></confirmtip>
   </div>
 </template>
 
@@ -53,6 +53,9 @@ export default {
       this.$store.commit(Types.REDUCE_CART, {bookId: cart.bookId})
     },
     remove (bookId) {
+      // this.showAlert = true
+      // this.alertText = '确定要删除吗？'
+      // this.sureTip(Types.REMOVE_CART, bookId)
       let flag = window.confirm('确定要删除吗？')
       if (flag) {
         this.$store.commit(Types.REMOVE_CART, bookId)
@@ -81,11 +84,11 @@ export default {
       }
     }
   },
-  filters: {
-    toFixed (input, param) {
-      return '￥' + input.toFixed(param)
-    }
-  },
+  // filters: { // 已经全局定义在 main.js
+  //   toFixed (input, param) {
+  //     return '￥' + input.toFixed(param)
+  //   }
+  // },
   components: {
     MHeader,
     confirmtip

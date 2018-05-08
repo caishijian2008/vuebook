@@ -28,6 +28,13 @@ router.beforeEach(function (to, from, next) {
   next()
 })
 
+// 修饰金额的过滤器
+Vue.filter('toFixed', (input, param) => {
+  input = input || 0
+  param = param || 0
+  return '￥' + input.toFixed(param)
+})
+
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */

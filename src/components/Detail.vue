@@ -45,7 +45,7 @@ export default {
       this.book = await findOneBook(this.bid)
       // 如果是空对象，需要跳转回列表页【难点】
       // JSON.stringify(this.book) === '{}' 或者 JSON.stringify(this.book).length === 0
-      console.log(Object.keys(this.book))
+      // console.log(Object.keys(this.book))
       Object.keys(this.book).length > 0 ? void 0 : this.$router.push('/list')
     }
   },
@@ -55,11 +55,11 @@ export default {
       return this.$route.params.bid
     }
   },
-  filters: {
-    toFixed (input, param) {
-      return '￥' + input.toFixed(param)
-    }
-  },
+  // filters: { // 已经全局定义在 main.js
+  //   toFixed (input, param) {
+  //     return '￥' + input.toFixed(param)
+  //   }
+  // },
   components: {
     MHeader
   },

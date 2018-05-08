@@ -7,8 +7,10 @@
         </div>
         <p class="tip_text">{{alertText}}</p>
         <div class="buttontip">
-          <div class="cancle" @click="cancleTip">取消</div>
-          <div class="confrim" @click="sureTip">确认</div>
+          <!-- <div class="cancle" @click.native="cancle">取消</div>
+          <div class="confirm" @click.native="sure">确认</div> -->
+          <div class="cancle" @click.native="handleAction('false')">取消</div>
+          <div class="confirm" @click.native="handleAction('true')">确认</div>
         </div>
       </section>
     </div>
@@ -20,18 +22,22 @@ export default {
   data () {
     return {
       positionY: 0,
-      timer: null
+      timer: null,
+      flag: ''
     }
   },
   props: ['alertText'],
   methods: {
     // 确认
-    sureTip () {
-      this.$emit('sureTip', true)
+    sure () {
+      this.$emit('sureTip', this.flag = true)
     },
     // 取消
-    cancleTip () {
-      this.$emit('cancleTip', false)
+    cancle () {
+      this.$emit('cancleTip', this.flag = false)
+    },
+    handleAction (action) {
+      this.flag = action
     }
   }
 }
@@ -132,7 +138,7 @@ export default {
       border-bottom-left-radius: 0.25rem;
       border-bottom-right-radius: 0.25rem;
     }
-    .confrim {
+    .confirm {
       @include sc(0.8rem, #fff);
       font-weight: bold;
       margin-top: 0.8rem;
