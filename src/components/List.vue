@@ -27,6 +27,7 @@ import MHeader from '@/base/MHeader'
 // import {getBooks, removeBook} from '../api'
 import {pagination, removeBook} from '../api' // 使用分页
 import * as Types from '../store/mutation_types'
+import { Toast } from 'mint-ui'
 export default {
   created () {
     this.getData()
@@ -53,6 +54,7 @@ export default {
     async remove (id) {
       await removeBook(id)
       this.books = this.books.filter(item => item.bookId !== id)
+      Toast(`已经删除`)
     },
     async getData () {
       // this.books = await getBooks()
@@ -66,11 +68,11 @@ export default {
       }
     }
   },
-  filters: {
-    toFixed (input, param) {
-      return '￥' + input.toFixed(param)
-    }
-  },
+  // filters: { // 已经全局定义在 main.js
+  //   toFixed (input, param) {
+  //     return '￥' + input.toFixed(param)
+  //   }
+  // },
   data () {
     return {
       books: [],
@@ -80,7 +82,8 @@ export default {
     }
   },
   components: {
-    MHeader
+    MHeader,
+    Toast
   }
 }
 </script>

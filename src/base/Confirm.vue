@@ -5,7 +5,7 @@
             <span></span>
             <span></span>
         </div>
-        <p class="tip_text">{{alertText}}</p>
+        <p class="tip_text">{{message}}</p>
         <div class="buttontip">
           <!-- <div class="cancle" @click.native="cancle">取消</div>
           <div class="confirm" @click.native="sure">确认</div> -->
@@ -18,26 +18,15 @@
 
 <script>
 export default {
-  name: 'ConfirmTip',
+  name: 'Confirm',
   data () {
     return {
-      positionY: 0,
-      timer: null,
-      flag: ''
+      message: ''
     }
   },
-  props: ['alertText'],
   methods: {
-    // 确认
-    sure () {
-      this.$emit('sureTip', this.flag = true)
-    },
-    // 取消
-    cancle () {
-      this.$emit('cancleTip', this.flag = false)
-    },
     handleAction (action) {
-      this.flag = action
+      this.message = action
     }
   }
 }

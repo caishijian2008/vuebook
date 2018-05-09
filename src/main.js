@@ -9,8 +9,15 @@ import store from './store'
 import VueAwesomeSwiper from 'vue-awesome-swiper'
 import 'swiper/dist/css/swiper.css'
 
+// 导入mint ui 的样式文件
+import 'mint-ui/lib/style.css'
+
 // 图片懒加载
 import VueLazyload from 'vue-lazyload'
+
+// 自定义的组件插件
+// import message from './base/MessageBox'
+// Vue.prototype.$message = message
 
 Vue.use(VueAwesomeSwiper)
 Vue.use(VueLazyload, {

@@ -27,7 +27,7 @@
       </div>
       <button class="settle-accounts">去结算(<span>{{allCount}}件</span>)</button>
     </div>
-    <confirmtip v-if="showAlert" :alertText="alertText" @sureTip="sureTip" @cancleTip="cancleTip" ref="confirm"></confirmtip>
+    <!-- <confirmtip v-if="showAlert" :alertText="alertText" @sureTip="sureTip" @cancleTip="cancleTip" ref="confirm"></confirmtip> -->
   </div>
 </template>
 
@@ -36,15 +36,27 @@ import MHeader from '@/base/MHeader'
 // 辅助函数，即语法糖
 import {mapGetters, mapState} from 'vuex'
 import * as Types from '@/store/mutation_types'
-import confirmtip from '@/base/ConfirmTip'
+import { MessageBox, Toast } from 'mint-ui'
 export default {
   created () {
     this.$store.commit(Types.INIT_BUYCART)
   },
   methods: {
     clearCart () {
-      this.showAlert = true
-      this.alertText = '清空购物车？'
+      // this.showAlert = true
+      // this.alertText = '清空购物车？'
+      // this.$message({ // 自定义的message组件
+      //   message: 'haha'
+      // })
+      MessageBox.confirm('清空购物车？').then(() => {
+        Toast({
+          message: '已经清空',
+          iconClass: 'iconfont icon-favorite'
+        })
+        this.$store.commit(Types.CLEAR_CART)
+      }).catch(() => {
+        Toast('取消操作')
+      })
     },
     addCart (bookId) {
       this.$store.commit(Types.PLUS_CART, {bookId})
@@ -56,10 +68,19 @@ export default {
       // this.showAlert = true
       // this.alertText = '确定要删除吗？'
       // this.sureTip(Types.REMOVE_CART, bookId)
-      let flag = window.confirm('确定要删除吗？')
-      if (flag) {
+      // let flag = window.confirm('确定要删除吗？')
+      // if (flag) {
+      //   this.$store.commit(Types.REMOVE_CART, bookId)
+      // }
+      MessageBox.confirm('确定要删除吗？').then(() => {
+        Toast({
+          message: '已经删除',
+          iconClass: 'iconfont icon-favorite'
+        })
         this.$store.commit(Types.REMOVE_CART, bookId)
-      }
+      }).catch(() => {
+        Toast('取消操作')
+      })
     },
     sureTip (val) {
       console.log(val)
@@ -91,13 +112,13 @@ export default {
   // },
   components: {
     MHeader,
-    confirmtip
+    MessageBox,
+    Toast
   },
   data () {
     return {
       showAlert: false,
       alertText: ''
-      // cartList: []
     }
   }
 }
