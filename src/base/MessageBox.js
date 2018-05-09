@@ -1,3 +1,6 @@
+// 可参考：
+// https://www.cnblogs.com/heyinwangchuan/p/8269278.html
+
 import Vue from 'vue'
 import confirmVue from './Confirm'
 
