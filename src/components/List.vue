@@ -27,7 +27,7 @@ import MHeader from '@/base/MHeader'
 // import {getBooks, removeBook} from '../api'
 import {pagination, removeBook} from '../api' // 使用分页
 import * as Types from '../store/mutation_types'
-import { Toast } from 'mint-ui'
+// import { Toast } from 'mint-ui'
 export default {
   created () {
     this.getData()
@@ -52,9 +52,16 @@ export default {
     },
     // 删除一项
     async remove (id) {
-      await removeBook(id)
-      this.books = this.books.filter(item => item.bookId !== id)
-      Toast(`已经删除`)
+      this.$mymessage('okoko').then(() => {
+        console.log('okokokok')
+        await removeBook(id)
+        this.books = this.books.filter(item => item.bookId !== id)
+      }).catch(() => {
+        console.log('nononono')
+      })
+      // await removeBook(id)
+      // this.books = this.books.filter(item => item.bookId !== id)
+      // Toast(`已经删除`)
     },
     async getData () {
       // this.books = await getBooks()
@@ -82,8 +89,8 @@ export default {
     }
   },
   components: {
-    MHeader,
-    Toast
+    MHeader
+    // Toast
   }
 }
 </script>

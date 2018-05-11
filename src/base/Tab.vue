@@ -9,12 +9,12 @@
       <span>列表</span>
     </router-link>
     <router-link to="/collect">
-      <i class="iconfont icon-favorite"></i>
+      <i class="iconfont icon-cart"></i>
       <span>购物车</span>
     </router-link>
     <router-link to="/add">
-      <i class="iconfont icon-add"></i>
-      <span>添加</span>
+      <i class="iconfont icon-account"></i>
+      <span>我的</span>
     </router-link>
   </div>
 </template>

@@ -51,7 +51,7 @@ export default {
       MessageBox.confirm('清空购物车？').then(() => {
         Toast({
           message: '已经清空',
-          iconClass: 'iconfont icon-favorite'
+          iconClass: 'iconfont icon-selected'
         })
         this.$store.commit(Types.CLEAR_CART)
       }).catch(() => {
@@ -75,7 +75,7 @@ export default {
       MessageBox.confirm('确定要删除吗？').then(() => {
         Toast({
           message: '已经删除',
-          iconClass: 'iconfont icon-favorite'
+          iconClass: 'iconfont icon-selected'
         })
         this.$store.commit(Types.REMOVE_CART, bookId)
       }).catch(() => {

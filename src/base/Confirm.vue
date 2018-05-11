@@ -1,5 +1,5 @@
  <template>
-    <div class="alet_container">
+    <div class="alet_container" v-if="show">
       <section class="tip_text_container">
         <div class="tip_icon">
             <span></span>
@@ -7,10 +7,10 @@
         </div>
         <p class="tip_text">{{message}}</p>
         <div class="buttontip">
-          <!-- <div class="cancle" @click.native="cancle">取消</div>
-          <div class="confirm" @click.native="sure">确认</div> -->
-          <div class="cancle" @click.native="handleAction('false')">取消</div>
-          <div class="confirm" @click.native="handleAction('true')">确认</div>
+          <div class="cancel" @click="cancel">取消</div>
+          <div class="confirm" @click="confirm">确认</div>
+          <!-- <div class="cancel" @click="handleAction('cancel')">取消</div>
+          <div class="confirm" @click="handleAction('confirm')">确认</div> -->
         </div>
       </section>
     </div>
@@ -21,12 +21,16 @@ export default {
   name: 'Confirm',
   data () {
     return {
+      show: false,
       message: ''
     }
   },
   methods: {
-    handleAction (action) {
-      this.message = action
+    cancel () {
+      this.show = false
+    },
+    confirm () {
+      this.show = false
     }
   }
 }
@@ -115,7 +119,7 @@ export default {
     flex:1;
     justify-content: space-around;
     width: 100%;
-    .cancle {
+    .cancel {
       @include sc(0.8rem, #fff);
       font-weight: bold;
       margin-top: 0.8rem;
