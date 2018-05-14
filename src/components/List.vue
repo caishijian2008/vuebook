@@ -51,17 +51,25 @@ export default {
       this.getData()
     },
     // 删除一项
-    async remove (id) {
-      this.$mymessage('okoko').then(() => {
-        console.log('okokokok')
-        await removeBook(id)
+    // async remove (id) {
+    //   this.$mymessage('okoko').then(() => { // 这个有错
+    //     console.log('okokokok')
+    //     await removeBook(id)
+    //     this.books = this.books.filter(item => item.bookId !== id)
+    //   }).catch(() => {
+    //     console.log('nononono')
+    //   })
+    //   // await removeBook(id)
+    //   // this.books = this.books.filter(item => item.bookId !== id)
+    //   // Toast(`已经删除`)
+    // },
+    remove (id) {
+      this.$mymessage('确定要删除吗？').then(() => {
+        removeBook(id).then(() => { console.log('删除了') })
         this.books = this.books.filter(item => item.bookId !== id)
       }).catch(() => {
-        console.log('nononono')
+        console.log('没有删除')
       })
-      // await removeBook(id)
-      // this.books = this.books.filter(item => item.bookId !== id)
-      // Toast(`已经删除`)
     },
     async getData () {
       // this.books = await getBooks()
