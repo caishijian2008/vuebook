@@ -28,6 +28,7 @@ import MHeader from '@/base/MHeader'
 import {pagination, removeBook} from '../api' // 使用分页
 import * as Types from '../store/mutation_types'
 // import { Toast } from 'mint-ui'
+import MessageBox2 from '../base/MessageBox2'
 export default {
   created () {
     this.getData()
@@ -64,11 +65,14 @@ export default {
     //   // Toast(`已经删除`)
     // },
     remove (id) {
-      this.$mymessage('确定要删除吗？').then(() => {
-        removeBook(id).then(() => { console.log('删除了') })
-        this.books = this.books.filter(item => item.bookId !== id)
-      }).catch(() => {
-        console.log('没有删除')
+      // this.$mymessage('确定要删除吗？').then(() => {
+      //   removeBook(id).then(() => { console.log('删除了') })
+      //   this.books = this.books.filter(item => item.bookId !== id)
+      // }).catch(() => {
+      //   console.log('没有删除')
+      // })
+      MessageBox2.confirm('okoooo').then(() => {
+        console.log('确定时。。。')
       })
     },
     async getData () {

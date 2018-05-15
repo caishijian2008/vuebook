@@ -16,8 +16,8 @@ import 'mint-ui/lib/style.css'
 import VueLazyload from 'vue-lazyload'
 
 // 自定义的组件插件
-import mymessage from './base/MessageBox'
-Vue.prototype.$mymessage = mymessage
+// import mymessage from './base/MessageBox'
+// Vue.prototype.$mymessage = mymessage
 
 Vue.use(VueAwesomeSwiper)
 Vue.use(VueLazyload, {

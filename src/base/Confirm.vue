@@ -7,8 +7,8 @@
         </div>
         <p class="tip_text">{{message}}</p>
         <div class="buttontip">
-          <div class="cancel" @click="cancel">取消</div>
-          <div class="confirm" @click="confirm">确认</div>
+          <div class="cancel" v-show="showCancelButton" @click="cancel">取消</div>
+          <div class="confirm" v-show="showConfirmButton" @click="confirm">确认</div>
           <!-- <div class="cancel" @click="handleAction('cancel')">取消</div>
           <div class="confirm" @click="handleAction('confirm')">确认</div> -->
         </div>
@@ -22,7 +22,9 @@ export default {
   data () {
     return {
       show: false,
-      message: ''
+      message: '',
+      showCancelButton: false,
+      showConfirmButton: true
     }
   },
   methods: {
@@ -75,9 +77,9 @@ export default {
   position: absolute;
   top: 50%;
   left: 50%;
-  margin-top: -6rem;
-  margin-left: -6rem;
-  width: 12rem;
+  margin-top: -7rem;
+  margin-left: -7rem;
+  width: 14rem;
   animation: tipMove 0.4s;
   background-color: #fff;
   border: 1px;
@@ -88,7 +90,7 @@ export default {
   flex-direction: column;
   border-radius: 0.25rem;
   .tip_icon {
-    @include wh(3rem, 3rem);
+    @include wh(4rem, 4rem);
     border: 0.15rem solid #f79706;
     border-radius: 50%;
     display: flex;
@@ -108,8 +110,8 @@ export default {
     }
   }
   .tip_text {
-    @include sc(0.8rem, #333);
-    line-height: 0.9rem;
+    @include sc(0.9rem, #333);
+    line-height: 1rem;
     text-align: center;
     margin-top: 0.8rem;
     padding: 0 0.4rem;
@@ -119,29 +121,20 @@ export default {
     flex:1;
     justify-content: space-around;
     width: 100%;
-    .cancel {
-      @include sc(0.8rem, #fff);
+    .confirm, .cancel {
+      @include sc(.9rem, #fff);
       font-weight: bold;
-      margin-top: 0.8rem;
-      background-color: #e7a043;
+      margin-top: 0.9rem;
+      background-color: #4cd964;
       width: 100%;
       text-align: center;
-      line-height: 1.8rem;
+      line-height: 2rem;
       border: 1px;
       border-bottom-left-radius: 0.25rem;
       border-bottom-right-radius: 0.25rem;
     }
-    .confirm {
-      @include sc(0.8rem, #fff);
-      font-weight: bold;
-      margin-top: 0.8rem;
-      background-color: #4cd964;
-      width: 100%;
-      text-align: center;
-      line-height: 1.8rem;
-      border: 1px;
-      border-bottom-left-radius: 0.25rem;
-      border-bottom-right-radius: 0.25rem;
+    .cancel {
+      background-color: #e7a043;
     }
   }
 }
