@@ -36,7 +36,8 @@ import MHeader from '@/base/MHeader'
 // 辅助函数，即语法糖
 import {mapGetters, mapState} from 'vuex'
 import * as Types from '@/store/mutation_types'
-import { MessageBox, Toast } from 'mint-ui'
+import { Toast } from 'mint-ui'
+import MessageBox from '../base/MessageBox2'
 export default {
   created () {
     this.$store.commit(Types.INIT_BUYCART)
@@ -81,15 +82,15 @@ export default {
       }).catch(() => {
         Toast('取消操作')
       })
-    },
-    sureTip (val) {
-      console.log(val)
-      this.showAlert = false
-      this.$store.commit(Types.CLEAR_CART)
-    },
-    cancleTip () {
-      this.showAlert = false
     }
+    // sureTip (val) {
+    //   console.log(val)
+    //   this.showAlert = false
+    //   this.$store.commit(Types.CLEAR_CART)
+    // },
+    // cancleTip () {
+    //   this.showAlert = false
+    // }
   },
   computed: {
     ...mapState(['cartList']),

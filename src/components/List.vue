@@ -71,7 +71,7 @@ export default {
       // }).catch(() => {
       //   console.log('没有删除')
       // })
-      MessageBox.confirm('okoooo').then(() => {
+      MessageBox.confirm('确定要删除吗？').then(() => {
         // console.log('确定时。。。')
         removeBook(id).then(() => { console.log('删除了') })
         this.books = this.books.filter(item => item.bookId !== id)
