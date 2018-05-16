@@ -15,9 +15,9 @@ import 'mint-ui/lib/style.css'
 // 图片懒加载
 import VueLazyload from 'vue-lazyload'
 
-// 自定义的组件插件
-// import mymessage from './base/MessageBox'
-// Vue.prototype.$mymessage = mymessage
+// 自定义的组件插件（已使用MessageBox2代替）
+// import myconfirm from './base/MessageBox'
+// Vue.prototype.$myconfirm = myconfirm
 
 Vue.use(VueAwesomeSwiper)
 Vue.use(VueLazyload, {

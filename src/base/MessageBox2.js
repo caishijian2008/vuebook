@@ -8,14 +8,16 @@ const MessageBoxConstructor = Vue.extend(confirmVue)
 
 let instance, currentMsg
 let msgQueue = []
+
 let defaults = {
   message: '',
   showConfirmButton: true,
   showCancelButton: false
 }
 
+// 合并不同的消息
 let merge = function (target) {
-  console.log('arguments.length = ' + arguments.length)
+  console.log(arguments)
   for (let i = 1, j = arguments.length; i < j; i++) {
     let source = arguments[i]
     for (let prop in source) {
@@ -28,17 +30,17 @@ let merge = function (target) {
     }
   }
 
+  console.log(target)
+  // 返回合并了的消息
   return target
 }
 
 const showNextMsg = (options) => {
-  console.log('msgQueue: ')
-  console.log(msgQueue)
   if (msgQueue.length > 0) {
+    console.log(msgQueue)
     currentMsg = msgQueue.shift()
     let options = currentMsg.options
-    console.log('options-2: ')
-    console.log(options)
+    // 把options赋给实例instance
     for (let prop in options) {
       if (options.hasOwnProperty(prop)) {
         instance[prop] = options[prop]
@@ -65,25 +67,28 @@ const defaultCallback = (currentMsg) => {
   console.log(currentMsg)
   let confirm = instance.confirm
   let cancel = instance.cancel
-  instance.confirm = () => {
-    confirm()
-    currentMsg.resolve = instance.confirm
+  if (currentMsg.resolve) {
+    let $type = currentMsg.options.$type
+    // 判断是哪种类型的弹出框
+    if ($type === 'confirm') {
+      instance.confirm = () => {
+        confirm()
+        currentMsg.resolve('ok')
+      }
+      instance.cancel = () => {
+        cancel()
+        currentMsg.reject('no')
+      }
+    } else {
+      instance.confirm = () => {
+        confirm()
+        currentMsg.resolve('ok')
+      }
+    }
   }
-
-  instance.cancel = () => {
-    cancel()
-    currentMsg.reject = instance.cancel
-  }
-  // if (currentMsg) {
-  //   if (action === 'confirm') {
-  //     currentMsg.resolve(action)
-  //   } else if (action === 'cancel') {
-  //     currentMsg.reject(action)
-  //   }
-  // }
 }
 
-let MessageBox2 = (options = {}) => {
+let MessageBox = (options = {}) => {
   // 生成组件
   instance = new MessageBoxConstructor({
     el: document.createElement('div')
@@ -91,7 +96,6 @@ let MessageBox2 = (options = {}) => {
 
   // confirmVue 的message
   if (typeof options === 'string') {
-    // instance.message = options
     options = {
       message: options
     }
@@ -99,31 +103,17 @@ let MessageBox2 = (options = {}) => {
 
   // 监控弹窗组件是否显示（监控confirmVue的show），
   // 当按下确定或取消后销毁组件实例
-  // instance.$watch('show', function (val) {
-  //   if (!val) {
-  //     instance.$destroy(true)
-  //     instance.$el.parentNode.removeChild(instance.$el)
-  //     instance = null
-  //   }
-  // })
-
-  console.log('instance-1: ')
-  console.log(instance)
+  instance.$watch('show', function (val) {
+    if (!val) {
+      instance.$destroy(true)
+      instance.$el.parentNode.removeChild(instance.$el)
+      instance = null
+    }
+  })
 
   return new Promise((resolve, reject) => {
-    // let confirm = instance.confirm
-    // let cancel = instance.cancel
-    // instance.confirm = () => {
-    //   confirm() // 确认后执行自身的操作
-    //   resolve('ok')
-    // }
-    // let newLocal = 'cancel'
-    // instance.cancel = () => {
-    //   cancel() // 取消后执行自身的操作
-    //   reject(newLocal)
-    // }
     msgQueue.push({
-      options: merge({}, defaults, MessageBox2.defaults || {}, options),
+      options: merge({}, defaults, MessageBox.defaults || {}, options),
       resolve: resolve,
       reject: reject
     })
@@ -131,23 +121,25 @@ let MessageBox2 = (options = {}) => {
   })
 }
 
-MessageBox2.setDefaults = function (defaults) {
-  MessageBox2.defaults = defaults
+MessageBox.setDefaults = function (defaults) {
+  MessageBox.defaults = defaults
 }
 
 // 警告框
-MessageBox2.alert = function (message, options) {
-  return MessageBox2(merge({
-    message: message
+MessageBox.alert = function (message, options) {
+  return MessageBox(merge({
+    message: message,
+    $type: 'alert' // 标识是哪种事件类型
   }, options))
 }
 
 // 确认框
-MessageBox2.confirm = function (message, options) {
-  return MessageBox2(merge({
+MessageBox.confirm = function (message, options) {
+  return MessageBox(merge({
     message: message,
+    $type: 'confirm',
     showCancelButton: true
   }, options))
 }
 
-export default MessageBox2
+export default MessageBox

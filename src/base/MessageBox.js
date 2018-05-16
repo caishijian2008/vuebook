@@ -11,7 +11,7 @@ const MessageBoxConstructor = Vue.extend(confirmVue)
 
 let instance = null
 
-let mymessage = (options = {}) => {
+let myconfirm = (options = {}) => {
   // 生成组件
   instance = new MessageBoxConstructor({
     el: document.createElement('div')
@@ -58,4 +58,4 @@ let mymessage = (options = {}) => {
   })
 }
 
-export default mymessage
+export default myconfirm
