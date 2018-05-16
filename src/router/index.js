@@ -36,10 +36,10 @@ export default new Router({
       }
     },
     {
-      path: '/add',
-      component: () => import('@/components/Add'),
+      path: '/about',
+      component: () => import('@/components/About'),
       meta: {
-        title: '添加'
+        title: '我的'
       }
     },
     {

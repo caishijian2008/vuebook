@@ -12,7 +12,7 @@
       <i class="iconfont icon-cart"></i>
       <span>购物车</span>
     </router-link>
-    <router-link to="/add">
+    <router-link to="/about">
       <i class="iconfont icon-account"></i>
       <span>我的</span>
     </router-link>
