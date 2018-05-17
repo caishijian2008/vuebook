@@ -1,5 +1,7 @@
 // 可参考：
-// https://www.cnblogs.com/heyinwangchuan/p/8269278.html
+// http://mint-ui.github.io/docs/#/zh-cn2/message-box
+// https://github.com/ElemeFE/mint-ui/blob/master/packages/message-box/src/message-box.js
+// https://coding.net/u/21young/p/mobile-example/git/blob/master/src/components/common/Confirm/index.js?public=true
 
 import Vue from 'vue'
 import confirmVue from './Confirm'

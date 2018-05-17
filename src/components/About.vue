@@ -1,8 +1,16 @@
 <template>
   <div>
-    <MHeader>我的</MHeader>
+    <MHeader back="true">我的</MHeader>
     <div class="content">
-      <div></div>
+      <section>
+        <div class="top">
+          <img src="" alt="">
+          <div>
+            <p>名字</p>
+            <p>用户名：</p>
+          </div>
+        </div>
+      </section>
     </div>
   </div>
 </template>
