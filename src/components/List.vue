@@ -1,5 +1,5 @@
 <template>
-  <div>wlug4g2j7x
+  <div>
     <MHeader>图书列表</MHeader>
     <div class="content" ref="scroll" @scroll="loadMore">
       <ul>
